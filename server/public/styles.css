@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+}
+
+.home-container {
+  background: linear-gradient(#00b7ff, #0618db);
+  display: flex;
+  flex-wrap: wrap;
+  height: 568px;
+}
+
+.app-logo-text {
+  font-family: "Potta One", cursive;
+  color: black;
+  font-size: 30px;
+  margin: 75px auto;
+}
+
+.nav-btn {
+  display: flex;
+  margin: 30px auto;
+  width: 250px;
+  height: 50px;
+  font-size: 18px;
+  font-family: "Potta One", cursive;
+  align-items: center;
+  justify-content: center;
+  border: solid black;
+  border-radius: 10px;
+  background-color: lightblue;
+}
