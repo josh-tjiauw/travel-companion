@@ -2,18 +2,23 @@ body {
   margin: 0;
 }
 
-.home-container {
+.container {
   background: linear-gradient(#00b7ff, #0618db);
   display: flex;
   flex-wrap: wrap;
   height: 568px;
+  position: relative;
 }
 
-.app-logo-text {
+.hdr-text {
   font-family: "Potta One", cursive;
   color: black;
   font-size: 30px;
   margin: 75px auto;
+}
+
+.text {
+  font-family: "Potta One", cursive;
 }
 
 .nav-btn {
@@ -28,4 +33,33 @@ body {
   border: solid black;
   border-radius: 10px;
   background-color: lightblue;
+}
+
+form {
+  position: absolute;
+  top: 25%;
+  margin: 0px auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+input {
+  width: 95%;
+}
+
+form button {
+  border: solid black;
+  border-radius: 10px;
+  background-color: navy;
+  color: white;
+  margin: 25px auto;
+  padding: 25px 50px;
+}
+
+.nav-home-btn {
+  height: 10%;
+  border: none;
+  background-color: transparent;
 }
