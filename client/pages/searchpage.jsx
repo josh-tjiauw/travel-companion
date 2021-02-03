@@ -13,13 +13,15 @@ export default function SearchPage() {
 
   const handleSelect = async (value) => {
     const results = await geocodeByAddress(value);
+    console.log(results[0].formatted_address);
+    console.log(results);
     const latLng = await getLatLng(results[0]);
     setAddress(value);
     setCoordinates(latLng);
   };
 
   return (
-    <div>
+    <div className="container">
       <PlacesAutocomplete
         value={address}
         onChange={setAddress}
@@ -27,30 +29,37 @@ export default function SearchPage() {
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <>
-            <div>
-              <h1 className="text">Search a City</h1>
-              <p>Latitude: {coordinates.lat}</p>
-              <p>Longitude: {coordinates.lng}</p>
-              <div>
-                <input
-                  {...getInputProps({ placeholder: "Enter a City Name" })}
-                />
+            <h1 className="text" id="searchHeader">
+              Search a City
+            </h1>
+            <input
+              id="autocompleteform"
+              {...getInputProps({
+                placeholder: "Enter a City Name",
+              })}
+            />
 
-                <div>
-                  {loading ? <div>Loading...</div> : null}
-                  {suggestions.map((suggestion) => {
-                    const style = {
-                      backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
-                    };
-
-                    return (
-                      <div {...getSuggestionItemProps(suggestion, { style })}>
-                        {suggestion.description}
-                      </div>
-                    );
-                  })}
+            <div style={{ width: "100vw" }}>
+              {loading ? (
+                <div style={{ position: "relative", top: "45%" }}>
+                  Loading...
                 </div>
-              </div>
+              ) : null}
+              {suggestions.map((suggestion) => {
+                const style = {
+                  backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
+                  position: "relative",
+                  top: "57%",
+                  border: "solid black",
+                  overflow: "visible",
+                };
+
+                return (
+                  <div {...getSuggestionItemProps(suggestion, { style })}>
+                    {suggestion.description}
+                  </div>
+                );
+              })}
             </div>
           </>
         )}

@@ -6,7 +6,8 @@ body {
   background: linear-gradient(#00b7ff, #0618db);
   display: flex;
   flex-wrap: wrap;
-  height: 568px;
+  width: 100vw;
+  height: 100vh;
   position: relative;
 }
 
@@ -62,4 +63,18 @@ form button {
   height: 10%;
   border: none;
   background-color: transparent;
+}
+
+#autocompleteform {
+  position: absolute;
+  top: 50%;
+  height: 30px;
+  width: 100%;
+  border: black solid;
+}
+
+#searchHeader {
+  position: absolute;
+  top: 20%;
+  left: 10%;
 }
