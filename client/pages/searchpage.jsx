@@ -1,40 +1,60 @@
-import React from 'react';
-import AppIcon from '../components/appicon';
+import React from "react";
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from "react-places-autocomplete";
 
-export default class SearchPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoading: true,
-      userInput: null,
-      cityResults: null
-    }
-    this.handleSubmit = this.handleSubmit.bind(this)
-  }
+export default function SearchPage() {
+  const [address, setAddress] = React.useState("");
+  const [coordinates, setCoordinates] = React.useState({
+    lat: null,
+    lng: null,
+  });
 
-  handleSubmit(){
-    this.setState({ userInput: e.target.value })
-  }
+  const handleSelect = async (value) => {
+    const results = await geocodeByAddress(value);
+    const latLng = await getLatLng(results[0]);
+    setAddress(value);
+    setCoordinates(latLng);
+  };
 
-  async componentDidMount() {
-    const url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${this.state.userInput}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=${config.apiKey}`
-    const response = await fetch(url);
-    const data = await response.json();
-    console.log(data)
-    this.setState({ cityResults:data, isLoading: false })
-  }
+  return (
+    <div>
+      <PlacesAutocomplete
+        value={address}
+        onChange={setAddress}
+        onSelect={handleSelect}
+      >
+        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+          <>
+            <div>
+              <h1 className="text">Search a City</h1>
+              <p>Latitude: {coordinates.lat}</p>
+              <p>Longitude: {coordinates.lng}</p>
+              <div>
+                <input
+                  {...getInputProps({ placeholder: "Enter a City Name" })}
+                />
 
-  render() {
-    return (
-    <div className="container">
-      <AppIcon />
-      <form>
-        <h1 className="hdr-text">Enter a City Name</h1>
-        <input type="text" name="findCity" id="findCity"/>
-        <button type="submit" onSubmit={this.handleSubmit}>SUBMIT</button>
-      </form>
+                <div>
+                  {loading ? <div>Loading...</div> : null}
+                  {suggestions.map((suggestion) => {
+                    const style = {
+                      backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
+                    };
+
+                    return (
+                      <div {...getSuggestionItemProps(suggestion, { style })}>
+                        {suggestion.description}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+      </PlacesAutocomplete>
     </div>
   );
-  }
-
 }

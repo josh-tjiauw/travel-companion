@@ -5,6 +5,6 @@ import CityDescription from './pages/citydescpage'
 
 export default class App extends React.Component {
   render() {
-    return <CityDescription />;
+    return <SearchPage />;
   }
 }
