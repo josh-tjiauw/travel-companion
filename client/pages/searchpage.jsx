@@ -1,4 +1,5 @@
 import React from "react";
+import AppIcon from "../components/appicon";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
@@ -20,12 +21,18 @@ export default function SearchPage() {
     setCoordinates(latLng);
   };
 
+  const searchOptions = {
+    types: ["geocode"],
+  };
+
   return (
     <div className="container">
+      <AppIcon />
       <PlacesAutocomplete
         value={address}
         onChange={setAddress}
         onSelect={handleSelect}
+        searchOptions={searchOptions}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <>
@@ -49,13 +56,13 @@ export default function SearchPage() {
                 const style = {
                   backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
                   position: "relative",
-                  top: "57%",
+                  top: "5%",
                   border: "solid black",
-                  overflow: "visible",
                 };
 
                 return (
                   <div {...getSuggestionItemProps(suggestion, { style })}>
+                    <i className="fas fa-map-marker-alt"></i>
                     {suggestion.description}
                   </div>
                 );
