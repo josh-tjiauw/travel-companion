@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import App from "../app";
 import AppIcon from "../components/appicon";
+import TodoForm from "../components/TodoForm";
+import PageTitle from "../components/PageTitle";
 
 export default function TodosPage() {
-  const handleAdd = (e) => {
-    console.log(e);
-  };
+  const [todosCity, settodosCity] = useState([]);
+  function addTodosCity(city) {
+    settodosCity([city, ...todosCity]);
+  }
+
   return (
     <div className="container">
       <AppIcon />
-      <h1 className="hdr-text">To-dos Page</h1>
-      <form>
-        <input type="text" placeholder="Enter a To-do" />
-        <button onClick={handleAdd}>Add</button>
-      </form>
+      <PageTitle value="Your To-dos" />
+      <TodoForm />
     </div>
   );
 }

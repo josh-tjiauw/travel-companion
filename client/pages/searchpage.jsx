@@ -4,6 +4,7 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
+import PageTitle from "../components/PageTitle";
 
 export default function SearchPage() {
   const [address, setAddress] = React.useState("");
@@ -36,9 +37,7 @@ export default function SearchPage() {
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <>
-            <h1 className="text" id="searchHeader">
-              Search a City
-            </h1>
+            <PageTitle value="Search a City" />
             <input
               id="autocompleteform"
               {...getInputProps({
