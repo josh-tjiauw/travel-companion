@@ -11,9 +11,8 @@ body {
 }
 
 .hdr-text {
-  position: absolute;
-  top: 0%;
-  left: 5%;
+  position: relative;
+  top: 10%;
   font-family: "Potta One", cursive;
   color: white;
   font-size: 30px;
@@ -27,7 +26,6 @@ body {
 
 .nav-btn {
   position: relative;
-  top: 20%;
   margin: 0px auto;
   width: 250px;
   height: 50px;
