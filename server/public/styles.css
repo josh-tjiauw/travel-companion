@@ -3,29 +3,32 @@ body {
 }
 
 .container {
-  background: linear-gradient(#00b7ff, #0618db);
+  background-color: #202324;
   display: flex;
   flex-wrap: wrap;
   width: 100vw;
   height: 100vh;
-  position: relative;
 }
 
 .hdr-text {
+  position: absolute;
+  top: 0%;
+  left: 5%;
   font-family: "Potta One", cursive;
-  color: black;
+  color: white;
   font-size: 30px;
-  margin-top: 75px;
-  height: 50px;
+  margin: 0px auto;
 }
 
 .text {
   font-family: "Potta One", cursive;
+  color: white;
 }
 
 .nav-btn {
-  display: flex;
-  margin: 30px auto;
+  position: relative;
+  top: 20%;
+  margin: 0px auto;
   width: 250px;
   height: 50px;
   font-size: 18px;
@@ -39,7 +42,7 @@ body {
 
 form {
   position: absolute;
-  top: 25%;
+  top: 30%;
   left: 7.5%;
   width: 80%;
 }
