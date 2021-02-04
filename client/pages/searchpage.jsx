@@ -12,12 +12,14 @@ export default function SearchPage() {
     lat: null,
     lng: null,
   });
+  const [cityName, setCityName] = React.useState({
+    place_id: null,
+  });
 
   const handleSelect = async (value) => {
     const results = await geocodeByAddress(value);
-    console.log(results[0].formatted_address);
-    console.log(results);
     const latLng = await getLatLng(results[0]);
+
     setAddress(value);
     setCoordinates(latLng);
   };
@@ -35,9 +37,11 @@ export default function SearchPage() {
         onSelect={handleSelect}
         searchOptions={searchOptions}
       >
-        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+        {({ getInputProps, suggestions, getSuggestionItemProps }) => (
           <>
-            <PageTitle value="Search a City" />
+            <div style={{ position: "relative", right: "2%", top: "10%" }}>
+              <PageTitle value="Search a City" />
+            </div>
             <input
               id="autocompleteform"
               {...getInputProps({
@@ -46,16 +50,10 @@ export default function SearchPage() {
             />
 
             <div style={{ width: "100vw" }}>
-              {loading ? (
-                <div style={{ position: "relative", top: "45%" }}>
-                  Loading...
-                </div>
-              ) : null}
               {suggestions.map((suggestion) => {
                 const style = {
                   backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
                   position: "relative",
-                  top: "5%",
                   border: "solid black",
                 };
 
