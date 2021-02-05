@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import App from "../app";
-import AppIcon from "../components/appicon";
 import PageTitle from "../components/PageTitle";
 import ToVisitForm from "../components/ToVisitForm";
 import ToVisitList from "../components/ToVisitList";
@@ -32,12 +31,11 @@ export default function ToVisitPage() {
 
   return (
     <div className="container">
-      <AppIcon />
       <div style={{ position: "absolute", top: "15%", left: "5%" }}>
         <PageTitle value="Your Future Visits" />
       </div>
       <ToVisitForm addToVisit={addToVisit} />
-      <div style={{ position: "absolute", top: "42%" }}>
+      <div style={{ position: "absolute", top: "35%" }}>
         <ToVisitList
           toVisit={toVisit}
           toggleComplete={toggleComplete}
