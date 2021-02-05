@@ -19,19 +19,9 @@ CREATE TABLE "users" (
 
 
 
-CREATE TABLE "todos" (
-	"todoTitle" TEXT NOT NULL,
-	"isCompleted" BOOLEAN NOT NULL,
-	"todosCityId" integer NOT NULL
-) WITH (
-  OIDS=FALSE
-);
-
-
-
 CREATE TABLE "posts" (
 	"postId" serial NOT NULL,
-	"todosCityId" TEXT NOT NULL,
+	"cityId" TEXT NOT NULL,
 	"description" TEXT NOT NULL,
 	"imageLink" TEXT NOT NULL,
 	"createdBy" integer NOT NULL,
@@ -42,12 +32,13 @@ CREATE TABLE "posts" (
 
 
 
-CREATE TABLE "todosCity" (
+CREATE TABLE "toVisit" (
 	"cityName" TEXT NOT NULL,
 	"createdBy" integer NOT NULL,
 	"isCompleted" BOOLEAN NOT NULL,
-	"todosCityId" serial NOT NULL,
-	CONSTRAINT "todosCity_pk" PRIMARY KEY ("todosCityId")
+	"cityId" integer NOT NULL,
+	"toVisitId" serial NOT NULL,
+	CONSTRAINT "toVisit_pk" PRIMARY KEY ("toVisitId")
 ) WITH (
   OIDS=FALSE
 );
@@ -55,9 +46,6 @@ CREATE TABLE "todosCity" (
 
 
 
-ALTER TABLE "todos" ADD CONSTRAINT "todos_fk0" FOREIGN KEY ("todosCityId") REFERENCES "todosCity"("todosCityId");
+ALTER TABLE "posts" ADD CONSTRAINT "posts_fk0" FOREIGN KEY ("createdBy") REFERENCES "users"("userId");
 
-ALTER TABLE "posts" ADD CONSTRAINT "posts_fk0" FOREIGN KEY ("todosCityId") REFERENCES "todosCity"("todosCityId");
-ALTER TABLE "posts" ADD CONSTRAINT "posts_fk1" FOREIGN KEY ("createdBy") REFERENCES "users"("userId");
-
-ALTER TABLE "todosCity" ADD CONSTRAINT "todosCity_fk0" FOREIGN KEY ("createdBy") REFERENCES "users"("userId");
+ALTER TABLE "toVisit" ADD CONSTRAINT "toVisit_fk0" FOREIGN KEY ("createdBy") REFERENCES "users"("userId");

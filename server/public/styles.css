@@ -3,28 +3,31 @@ body {
 }
 
 .container {
-  background: linear-gradient(#00b7ff, #0618db);
+  background-color: #202324;
   display: flex;
   flex-wrap: wrap;
   width: 100vw;
   height: 100vh;
-  position: relative;
+  overflow: auto;
 }
 
 .hdr-text {
+  position: relative;
+  top: 10%;
   font-family: "Potta One", cursive;
-  color: black;
+  color: white;
   font-size: 30px;
-  margin: 75px auto;
+  margin: 0px auto;
 }
 
 .text {
   font-family: "Potta One", cursive;
+  color: white;
 }
 
 .nav-btn {
-  display: flex;
-  margin: 30px auto;
+  position: relative;
+  margin: 0px auto;
   width: 250px;
   height: 50px;
   font-size: 18px;
@@ -37,17 +40,15 @@ body {
 }
 
 form {
-  position: absolute;
-  top: 25%;
-  margin: 0px auto;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  top: 30%;
+  right: 5%;
+  width: 80%;
+  height: 60px;
 }
-
 input {
-  width: 95%;
+  border: solid black;
+  width: 245px;
 }
 
 form button {
@@ -55,8 +56,9 @@ form button {
   border-radius: 10px;
   background-color: navy;
   color: white;
-  margin: 25px auto;
-  padding: 25px 50px;
+  margin: 5px auto;
+  padding: 5px 10px;
+  float: right;
 }
 
 .nav-home-btn {
