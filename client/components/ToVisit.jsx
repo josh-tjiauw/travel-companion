@@ -15,7 +15,7 @@ export default function ToVisit({ toVisit, toggleComplete, removeToVisit }) {
         display: "flex",
         justifyContent: "space-around",
         position: "relative",
-        width: "90vw",
+        width: "98vw",
         height: "10vw",
         border: "solid white",
       }}
