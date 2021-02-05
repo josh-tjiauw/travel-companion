@@ -12,14 +12,19 @@ export default function SearchPage() {
     lat: null,
     lng: null,
   });
-  const [cityName, setCityName] = React.useState({
+
+  const [city, setCity] = React.useState({
+    name: null,
     place_id: null,
   });
 
   const handleSelect = async (value) => {
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
+    const cityName = results[0].formatted_address;
+    const placeId = results[0].place_id;
 
+    setCity({ name: cityName, place_id: placeId }, console.log({ city }));
     setAddress(value);
     setCoordinates(latLng);
   };
