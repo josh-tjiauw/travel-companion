@@ -33,13 +33,17 @@ export default function ToVisitPage() {
   return (
     <div className="container">
       <AppIcon />
-      <PageTitle value="Your Places to Visit" />
+      <div style={{ position: "absolute", top: "15%", left: "5%" }}>
+        <PageTitle value="Your Future Visits" />
+      </div>
       <ToVisitForm addToVisit={addToVisit} />
-      <ToVisitList
-        toVisit={toVisit}
-        toggleComplete={toggleComplete}
-        removeToVisit={removeToVisit}
-      />
+      <div style={{ position: "absolute", top: "42%" }}>
+        <ToVisitList
+          toVisit={toVisit}
+          toggleComplete={toggleComplete}
+          removeToVisit={removeToVisit}
+        />
+      </div>
     </div>
   );
 }

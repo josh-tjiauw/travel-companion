@@ -6,6 +6,6 @@ import ToVisitPage from "./pages/toVisitPage";
 
 export default class App extends React.Component {
   render() {
-    return <SearchPage />;
+    return <ToVisitPage />;
   }
 }

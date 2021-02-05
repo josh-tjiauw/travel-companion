@@ -8,6 +8,7 @@ body {
   flex-wrap: wrap;
   width: 100vw;
   height: 100vh;
+  overflow: auto;
 }
 
 .hdr-text {
@@ -39,14 +40,15 @@ body {
 }
 
 form {
-  position: absolute;
+  position: relative;
   top: 30%;
-  left: 7.5%;
+  right: 5%;
   width: 80%;
+  height: 60px;
 }
 input {
   border: solid black;
-  width: 100%;
+  width: 245px;
 }
 
 form button {
