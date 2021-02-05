@@ -4,6 +4,7 @@ import SearchPage from "./pages/searchPage";
 import CityDescription from "./pages/citydescpage";
 import ToVisitPage from "./pages/toVisitPage";
 import { parseRoute } from "./lib";
+import AppIcon from "./components/appicon";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -17,11 +18,6 @@ export default class App extends React.Component {
     window.addEventListener("hashchange", (event) => {
       this.setState({ route: parseRoute(window.location.hash) });
     });
-    /**
-     * Listen for hash change events on the window object
-     * Each time the window.location.hash changes, parse
-     * it with the parseRoute() function and update state
-     */
   }
 
   renderPage() {
@@ -29,20 +25,21 @@ export default class App extends React.Component {
     if (route.path === "") {
       return <Home />;
     }
-    if (route.path === "products") {
-      const productId = route.params.get("productId");
-      return <ProductDetails productId={productId} />;
-    }
     if (route.path === "search") {
       return <SearchPage />;
     }
     if (route.path === "tovisit") {
       return <ToVisitPage />;
     }
-    if (route.path) return <NotFound />;
+    return <NotFound />;
   }
 
   render() {
-    return <>{this.renderPage()}</>;
+    return (
+      <>
+        <AppIcon />
+        {this.renderPage()}
+      </>
+    );
   }
 }

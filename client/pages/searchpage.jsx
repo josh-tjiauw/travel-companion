@@ -1,5 +1,4 @@
 import React from "react";
-import AppIcon from "../components/appicon";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
@@ -35,7 +34,6 @@ export default function SearchPage() {
 
   return (
     <div className="container">
-      <AppIcon />
       <PlacesAutocomplete
         value={address}
         onChange={setAddress}
