@@ -1,24 +1,17 @@
 import React from "react";
-import AppIcon from "../components/appicon";
 import PageTitle from "../components/PageTitle";
 
-export default function CityDescription() {
-  const style = { position: "relative", left: "10%" };
+export default function CityDescription(props) {
   return (
     <div className="container">
-      <AppIcon />
-      <div style={{ position: "relative", top: "10%", left: "10%" }}>
-        <PageTitle value="City Name" />
+      <div>
+        <PageTitle value={props.name} />
       </div>
-      <img src="" alt="" />
-      <h2 className="text" style={style}>
+      <h2 className="text" style={{ height: "50px" }}>
         Have you been here?
       </h2>
       <button className="nav-btn">Create a Review!</button>
-      <h2 className="text" style={style}>
-        See Other Reviews
-      </h2>
-      <button className="nav-btn">All Reviews</button>
+      <button className="nav-btn">View Other Reviews</button>
     </div>
   );
 }
