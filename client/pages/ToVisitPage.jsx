@@ -35,7 +35,7 @@ export default function ToVisitPage() {
         <PageTitle value="Your Future Visits" />
       </div>
       <ToVisitForm addToVisit={addToVisit} />
-      <div style={{ position: "absolute", top: "35%" }}>
+      <div style={{ position: "absolute", top: "42%" }}>
         <ToVisitList
           toVisit={toVisit}
           toggleComplete={toggleComplete}

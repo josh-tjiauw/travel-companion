@@ -5,7 +5,7 @@ import PlacesAutocomplete, {
 } from "react-places-autocomplete";
 import PageTitle from "../components/PageTitle";
 
-export default function SearchPage() {
+export default function SearchPage(props) {
   const [address, setAddress] = React.useState("");
   const [coordinates, setCoordinates] = React.useState({
     lat: null,
@@ -23,9 +23,10 @@ export default function SearchPage() {
     const cityName = results[0].formatted_address;
     const placeId = results[0].place_id;
 
-    setCity({ name: cityName, place_id: placeId }, console.log({ city }));
+    setCity({ name: cityName, place_id: placeId });
     setAddress(value);
     setCoordinates(latLng);
+    props.getInfo(results);
   };
 
   const searchOptions = {
@@ -61,7 +62,10 @@ export default function SearchPage() {
                 };
 
                 return (
-                  <div {...getSuggestionItemProps(suggestion, { style })}>
+                  <div
+                    key={suggestion.placeId}
+                    {...getSuggestionItemProps(suggestion, { style })}
+                  >
                     <i className="fas fa-map-marker-alt"></i>
                     {suggestion.description}
                   </div>
@@ -71,6 +75,11 @@ export default function SearchPage() {
           </>
         )}
       </PlacesAutocomplete>
+      <a href={`#city?placeId=${city.place_id}`}>
+        <button className="nav-btn" style={{ justifyContent: "center" }}>
+          Enter
+        </button>
+      </a>
     </div>
   );
 }
