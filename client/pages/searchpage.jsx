@@ -4,6 +4,7 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 import PageTitle from "../components/PageTitle";
+import fixCityName from "../lib/fixCityName";
 
 export default function SearchPage(props) {
   const [address, setAddress] = React.useState("");
@@ -75,7 +76,11 @@ export default function SearchPage(props) {
           </>
         )}
       </PlacesAutocomplete>
-      <a href={`#city?placeId=${city.place_id}`}>
+      <a
+        href={`#city?cityName=${fixCityName(city.name)}&placeId=${
+          city.place_id
+        }`}
+      >
         <button className="nav-btn" style={{ justifyContent: "center" }}>
           Enter
         </button>

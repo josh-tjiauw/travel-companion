@@ -8,16 +8,18 @@ export default class CreateReview extends React.Component {
       placeId: null,
       description: null,
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange = (e) => {
+  handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-  };
+  }
 
-  handleSubmit = (e) => {
+  handleSubmit(e) {
     e.preventDefault();
     console.log(this.state);
-  };
+  }
 
   render() {
     const { userId, placeId, description } = this.state;
@@ -48,6 +50,7 @@ export default class CreateReview extends React.Component {
               onChange={this.handleChange}
             />
           </div>
+          <button type="submit">Submit</button>
         </form>
       </div>
     );
