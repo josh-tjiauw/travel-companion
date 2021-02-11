@@ -41,7 +41,6 @@ export default class App extends React.Component {
     if (route.path === "city") {
       const placeId = route.params.get("placeId");
       const cityName = route.params.get("cityName");
-      console.log(cityName);
       return <CityDescriptionPage cityName={cityName} placeId={placeId} />;
     }
     return <NotFound />;

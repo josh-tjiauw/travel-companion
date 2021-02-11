@@ -6,7 +6,8 @@ export default class CityDescriptionPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cityName: null,
+      cityName: this.props.cityName,
+      placeId: this.props.placeId,
       img: null,
     };
   }
@@ -23,18 +24,20 @@ export default class CityDescriptionPage extends React.Component {
     this.setState({ img: img_link });
   }
   render() {
-    console.log(this.state);
+    const createReviewLink = `api/placeId=${this.state.placeId}`;
     return (
       <>
         <div className="container">
           <img src={this.state.img} alt="City" />
           <div>
-            <PageTitle value={this.props.cityName} />
+            <PageTitle value={this.state.cityName} />
           </div>
           <h2 className="text" style={{ height: "50px" }}>
             Have you been here?
           </h2>
-          <button className="nav-btn">Create a Review!</button>
+          <button className="nav-btn" href={createReviewLink}>
+            Create a Review!
+          </button>
           <button className="nav-btn">View Other Reviews</button>
         </div>
       </>

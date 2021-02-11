@@ -1,34 +1,42 @@
-import React, { useState } from "react";
+import React from "react";
 
-export default function ToVisitForm({ addToVisit }) {
-  const [toVisit, setToVisit] = useState({
-    id: "",
-    cityName: "",
-    isCompleted: false,
-  });
-
-  function handleInputChange(e) {
-    setToVisit({ ...toVisit, cityName: e.target.value });
+export default class ToVisitForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      cityName: "",
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  function handleAdd(e) {
+  handleChange(e) {
+    this.setState({ cityName: e.target.value });
+  }
+
+  handleSubmit(e) {
     e.preventDefault();
-    if (toVisit.cityName.trim()) {
-      addToVisit({ ...toVisit, id: null });
-      setToVisit({ ...toVisit, cityName: "" });
-    }
+    const newToVisit = {
+      cityName: this.state.cityName,
+      isCompleted: false,
+    };
+    this.props.onSubmit(newToVisit);
+    this.setState({ cityName: "" });
   }
 
-  return (
-    <form onSubmit={handleAdd}>
-      <input
-        label="city"
-        type="text"
-        value={toVisit.cityName}
-        onChange={handleInputChange}
-        placeholder="Enter a city name"
-      />
-      <button type="submit">Add</button>
-    </form>
-  );
+  render() {
+    const value = this.state.cityName;
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input
+          required
+          type="text"
+          value={value}
+          onChange={this.handleChange}
+          placeholder="Enter a city name"
+        />
+        <button type="submit">Add</button>
+      </form>
+    );
+  }
 }

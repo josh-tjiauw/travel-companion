@@ -76,11 +76,7 @@ export default function SearchPage(props) {
           </>
         )}
       </PlacesAutocomplete>
-      <a
-        href={`#city?cityName=${fixCityName(city.name)}&placeId=${
-          city.place_id
-        }`}
-      >
+      <a href={`#city?cityName=${city.name}&placeId=${city.place_id}`}>
         <button className="nav-btn" style={{ justifyContent: "center" }}>
           Enter
         </button>

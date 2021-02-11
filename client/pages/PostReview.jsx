@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 export default class CreateReview extends React.Component {
   constructor(props) {
@@ -18,7 +19,6 @@ export default class CreateReview extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
   }
 
   render() {
