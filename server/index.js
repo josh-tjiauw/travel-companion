@@ -87,69 +87,72 @@ app.patch('/api/toVisit/:toVisitId', (req, res) => {
     });
 });
 
+app.get('/api/city/:placeId/posts', (req, res, next) => {
+  const {placeId} = req.params;
+  const sql = `
+    select *
+      from "posts"
+      where "placeId" = $1
+      order by "postId"
+  `;
+const params = [placeId]
+  db.query(sql, params)
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
+});
+
+app.post('/api/city/:placeId/posts', (req, res, next) => {
+  const params = [req.body.body, req.body.recRestaurants, req.body.recActivities]
+  if (params[0] === '') {
+    res.status(400).send('Cannot leave this field blank.')
+    return;
+  }
+  const sql = `
+  insert into "posts" ("body", "recRestaurants", "recActivities")
+  values ($1, $2, $3)
+  returning *
+  `
+
+  db.query(sql, params)
+    .then(result => {
+      const review = result.rows[0];
+      res.status(201).json(review)
+    })
+
+    .catch(err => {
+      res.status(500).json({
+        error: 'An unexpected error occurred.'
+      })
+    })
+})
+
+app.get('/api/city/:placeId/posts/:postId', (req, res, next) => {
+  const placeId = parseInt(req.params.placeId, 10);
+  if (!placeId) {
+    throw new ClientError(400, 'placeId must be a positive integer');
+  }
+  const sql = `
+    select "placeId",
+    "body",
+    "recRestaurants",
+    "recActivities"
+    from "posts"
+    where "postId" = $1
+  `;
+  const params = [postId];
+  db.query(sql, params)
+    .then(result => {
+      if (!result.rows[0]) {
+        throw new ClientError(404, `cannot find product with placeId ${placeId}`);
+      }
+      res.json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console
   console.log('Listening on port', process.env.PORT);
 });
-
-
-// app.get('/api/city/:placeId/posts', (req, res, next) => {
-//   const sql = `
-//     select *
-//       from "posts"
-//   `;
-//   db.query(sql)
-//     .then(result => res.json(result.rows))
-//     .catch(err => next(err));
-// });
-
-// app.post('/api/city/posts', (req, res, next) => {
-//   const params = [req.body.body, req.body.recRestaurants, req.body.recActivities]
-//   if (params[0] === '') {
-//     res.status(400).send('Cannot leave this field blank.')
-//     return;
-//   }
-//   const sql = `
-//   insert into "posts" ("body", "recRestaurants", "recActivities")
-//   values ($1, $2, $3)
-//   returning *
-//   `
-
-//   db.query(sql, params)
-//     .then(result => {
-//       const review = result.rows[0];
-//       res.status(201).json(review)
-//     })
-
-//     .catch(err => {
-//       res.status(500).json({
-//         error: 'An unexpected error occurred.'
-//       })
-//     })
-// })
-
-// app.get('/api/city/:placeId/posts/:postId', (req, res, next) => {
-//   const placeId = parseInt(req.params.placeId, 10);
-//   if (!placeId) {
-//     throw new ClientError(400, 'placeId must be a positive integer');
-//   }
-//   const sql = `
-//     select "placeId",
-//     "body",
-//     "recRestaurants",
-//     "recActivities"
-//     from "posts"
-//     where "postId" = $1
-//   `;
-//   const params = [postId];
-//   db.query(sql, params)
-//     .then(result => {
-//       if (!result.rows[0]) {
-//         throw new ClientError(404, `cannot find product with placeId ${placeId}`);
-//       }
-//       res.json(result.rows[0]);
-//     })
-//     .catch(err => next(err));
-// });

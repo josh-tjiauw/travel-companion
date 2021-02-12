@@ -24,7 +24,7 @@ export default class CityDescriptionPage extends React.Component {
     this.setState({ img: img_link });
   }
   render() {
-    const createReviewLink = `api/placeId=${this.state.placeId}`;
+    const createReviewLink = `#cityReviews?cityName=${this.state.cityName}&placeId=${this.state.placeId}`;
     return (
       <>
         <div className="container">
@@ -35,9 +35,10 @@ export default class CityDescriptionPage extends React.Component {
           <h2 className="text" style={{ height: "50px" }}>
             Have you been here?
           </h2>
-          <button className="nav-btn" href={createReviewLink}>
-            Create a Review!
-          </button>
+          <a href={createReviewLink}>
+            <button className="nav-btn">Create a Review!</button>
+          </a>
+
           <button className="nav-btn">View Other Reviews</button>
         </div>
       </>
