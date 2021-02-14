@@ -8,8 +8,8 @@ export default function AppIcon() {
       style={{
         display: "flex",
         position: "absolute",
-        top: "10px",
-        left: "10px",
+        top: "5px",
+        left: "5px",
       }}
     >
       <i className="fas fa-city"></i>TC

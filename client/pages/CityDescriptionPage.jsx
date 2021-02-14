@@ -1,5 +1,6 @@
 import React from "react";
 import PageTitle from "../components/PageTitle";
+import ReviewForm from "../components/ReviewForm";
 import fixCityName from "../lib/fixCityName";
 
 export default class CityDescriptionPage extends React.Component {
@@ -9,7 +10,24 @@ export default class CityDescriptionPage extends React.Component {
       cityName: this.props.cityName,
       placeId: this.props.placeId,
       img: null,
+      reviewSubmitted: false,
+      reviews: [],
     };
+    this.addReview = this.addReview.bind(this);
+  }
+
+  addReview(review) {
+    fetch(`/api/city/${this.state.placeId}/posts`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(review),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({ reviews: [data, ...this.state.reviews] });
+      });
   }
 
   async componentDidMount() {
@@ -28,18 +46,39 @@ export default class CityDescriptionPage extends React.Component {
     return (
       <>
         <div className="container">
-          <img src={this.state.img} alt="City" />
-          <div>
+          <img
+            src={this.state.img}
+            alt="City"
+            style={{ width: "300px", height: "300px" }}
+          />
+          <div style={{ marginTop: "25px" }}>
             <PageTitle value={this.state.cityName} />
           </div>
-          <h2 className="text" style={{ height: "50px" }}>
-            Have you been here?
-          </h2>
-          <a href={createReviewLink}>
-            <button className="nav-btn">Create a Review!</button>
-          </a>
-
-          <button className="nav-btn">View Other Reviews</button>
+          <div>
+            <h2
+              style={{
+                marginTop: "25px",
+                height: "50px",
+                fontSize: "24px",
+                color: "white",
+              }}
+            >
+              Have you been here?
+            </h2>
+          </div>
+          <div style={{ marginTop: "5px" }}>
+            <ReviewForm
+              placeId={this.state.placeId}
+              onSubmit={this.addReview}
+            />
+          </div>
+          <div>
+            <a
+              href={`#cityReviews?cityName=${this.state.cityName}&placeId=${this.state.placeId}`}
+            >
+              <button className="nav-btn">View All Reviews</button>
+            </a>
+          </div>
         </div>
       </>
     );

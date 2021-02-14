@@ -90,8 +90,8 @@ app.patch('/api/toVisit/:toVisitId', (req, res) => {
 app.get('/api/city/:placeId/posts', (req, res, next) => {
   const {placeId} = req.params;
   const sql = `
-    select *
-      from "posts"
+    select "body", "firstName", "lastName", "placeId", "postId", "recActivities", "recRestaurants", "userId"
+      from "posts", "users"
       where "placeId" = $1
       order by "postId"
   `;
@@ -102,14 +102,14 @@ const params = [placeId]
 });
 
 app.post('/api/city/:placeId/posts', (req, res, next) => {
-  const params = [req.body.body, req.body.recRestaurants, req.body.recActivities]
+  const params = [req.body.body, req.body.recRestaurants, req.body.recActivities, req.body.placeId]
   if (params[0] === '') {
     res.status(400).send('Cannot leave this field blank.')
     return;
   }
   const sql = `
-  insert into "posts" ("body", "recRestaurants", "recActivities")
-  values ($1, $2, $3)
+  insert into "posts" ("body", "recRestaurants", "recActivities", "placeId", "createdBy")
+  values ($1, $2, $3, $4, 1)
   returning *
   `
 
@@ -120,6 +120,7 @@ app.post('/api/city/:placeId/posts', (req, res, next) => {
     })
 
     .catch(err => {
+      console.log(err)
       res.status(500).json({
         error: 'An unexpected error occurred.'
       })

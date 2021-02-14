@@ -27,13 +27,14 @@ export default class ToVisitForm extends React.Component {
   render() {
     const value = this.state.cityName;
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} style={{ width: "100%" }}>
         <input
           required
           type="text"
           value={value}
           onChange={this.handleChange}
           placeholder="Enter a city name"
+          style={{ width: "100%" }}
         />
         <button type="submit">Add</button>
       </form>

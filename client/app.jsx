@@ -6,6 +6,7 @@ import { parseRoute } from "./lib";
 import AppIcon from "./components/appicon";
 import CityDescriptionPage from "./pages/CityDescriptionPage";
 import ViewCityReviews from "./pages/ViewCityReviews";
+import ReviewForm from "./components/ReviewForm";
 
 export default class App extends React.Component {
   constructor(props) {

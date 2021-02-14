@@ -53,7 +53,6 @@ export default class ToVisitPage extends React.Component {
       .then((data) => {
         const map = this.state.toVisit.map((index) => {
           if (index.toVisitId === toVisitId) {
-            console.log(index);
             return data;
           } else return index;
         });
@@ -64,11 +63,19 @@ export default class ToVisitPage extends React.Component {
   render() {
     return (
       <div className="container">
-        <div style={{ position: "absolute", top: "15%", left: "5%" }}>
-          <PageTitle value="Your Future Visits" />
+        <PageTitle value="Your Future Visits" />
+        <div
+          style={{
+            position: "absolute",
+            top: "20%",
+            width: "95vw",
+            left: "15px",
+            margin: "0px auto",
+          }}
+        >
+          <ToVisitForm onSubmit={this.addToVisit} />
         </div>
-        <ToVisitForm onSubmit={this.addToVisit} />
-        <div style={{ position: "absolute", top: "42%" }}>
+        <div style={{ width: "315px" }}>
           <ToVisitList
             toVisit={this.state.toVisit}
             toggleCompleted={this.toggleCompleted}

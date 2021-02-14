@@ -35,7 +35,14 @@ export default function SearchPage(props) {
   };
 
   return (
-    <div className="container">
+    <div
+      style={{
+        backgroundColor: "#202324",
+        display: "flex",
+        flexWrap: "wrap",
+        height: "100vh",
+      }}
+    >
       <PlacesAutocomplete
         value={address}
         onChange={setAddress}
@@ -44,21 +51,32 @@ export default function SearchPage(props) {
       >
         {({ getInputProps, suggestions, getSuggestionItemProps }) => (
           <>
-            <div style={{ position: "relative", right: "2%", top: "10%" }}>
+            <div
+              style={{
+                display: "flex",
+                position: "relative",
+                justifyContent: "center",
+                top: "10%",
+                width: "100vw",
+                height: "30px",
+              }}
+            >
               <PageTitle value="Search a City" />
             </div>
-            <input
-              id="autocompleteform"
-              {...getInputProps({
-                placeholder: "Enter a City Name",
-              })}
-            />
+            <div style={{ width: "100%" }}>
+              <input
+                id="autocompleteform"
+                {...getInputProps({
+                  placeholder: "Enter a City Name",
+                })}
+              />
+            </div>
 
             <div style={{ width: "100vw" }}>
               {suggestions.map((suggestion) => {
                 const style = {
                   backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
-                  position: "relative",
+                  width: "100%",
                   border: "solid black",
                 };
 
@@ -76,10 +94,12 @@ export default function SearchPage(props) {
           </>
         )}
       </PlacesAutocomplete>
-      <a href={`#city?cityName=${city.name}&placeId=${city.place_id}`}>
-        <button className="nav-btn" style={{ justifyContent: "center" }}>
-          Enter
-        </button>
+      <a
+        href={`#city?cityName=${city.name}&placeId=${city.place_id}`}
+        className="nav-btn"
+        style={{ display: "flex", justifyContent: "center", color: "black" }}
+      >
+        Enter
       </a>
     </div>
   );
