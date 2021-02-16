@@ -5,20 +5,20 @@ body {
 .container {
   background-color: #202324;
   display: flex;
+  position: relative;
   flex-wrap: wrap;
   justify-content: center;
-  width: 100vw;
+  max-width: 100vw;
   height: 100vh;
   overflow: auto;
 }
 
 .hdr-text {
-  position: relative;
-  top: 10%;
   font-family: "Potta One", cursive;
   color: white;
-  font-size: 30px;
+  font-size: 24px;
   margin: 0px auto;
+  height: 30px;
 }
 
 .text {
@@ -28,7 +28,7 @@ body {
 
 .nav-btn {
   position: relative;
-  margin: 0px auto;
+  margin: 10px auto;
   width: 250px;
   height: 50px;
   font-size: 18px;
@@ -50,6 +50,7 @@ form {
 input {
   border: solid black;
   width: 245px;
+  height: 30px;
 }
 
 form button {
@@ -81,4 +82,12 @@ form button {
   position: absolute;
   top: 20%;
   left: 10%;
+}
+
+.hidden {
+  display: none;
+}
+
+a {
+  height: 50px;
 }

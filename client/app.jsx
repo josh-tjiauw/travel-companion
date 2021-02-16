@@ -1,11 +1,12 @@
 import React from "react";
 import Home from "./pages/home";
 import SearchPage from "./pages/searchPage";
-import CityDescription from "./pages/citydescpage";
 import ToVisitPage from "./pages/toVisitPage";
 import { parseRoute } from "./lib";
 import AppIcon from "./components/appicon";
-import GetPhoto from "./components/GetPhoto";
+import CityDescriptionPage from "./pages/CityDescriptionPage";
+import ViewCityReviews from "./pages/ViewCityReviews";
+import ReviewForm from "./components/ReviewForm";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -40,15 +41,14 @@ export default class App extends React.Component {
       return <ToVisitPage />;
     }
     if (route.path === "city") {
-      return (
-        <>
-          <GetPhoto cityName={this.state.info[0].formatted_address} />
-          <CityDescription
-            name={this.state.info[0].formatted_address}
-            placeId={this.state.info[0].place_id}
-          />
-        </>
-      );
+      const placeId = route.params.get("placeId");
+      const cityName = route.params.get("cityName");
+      return <CityDescriptionPage cityName={cityName} placeId={placeId} />;
+    }
+    if (route.path === "cityReviews") {
+      const placeId = route.params.get("placeId");
+      const cityName = route.params.get("cityName");
+      return <ViewCityReviews cityName={cityName} placeId={placeId} />;
     }
     return <NotFound />;
   }

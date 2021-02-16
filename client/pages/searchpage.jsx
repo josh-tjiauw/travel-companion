@@ -4,6 +4,7 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 import PageTitle from "../components/PageTitle";
+import fixCityName from "../lib/fixCityName";
 
 export default function SearchPage(props) {
   const [address, setAddress] = React.useState("");
@@ -34,7 +35,14 @@ export default function SearchPage(props) {
   };
 
   return (
-    <div className="container">
+    <div
+      style={{
+        backgroundColor: "#202324",
+        display: "flex",
+        flexWrap: "wrap",
+        height: "100vh",
+      }}
+    >
       <PlacesAutocomplete
         value={address}
         onChange={setAddress}
@@ -43,21 +51,32 @@ export default function SearchPage(props) {
       >
         {({ getInputProps, suggestions, getSuggestionItemProps }) => (
           <>
-            <div style={{ position: "relative", right: "2%", top: "10%" }}>
+            <div
+              style={{
+                display: "flex",
+                position: "absolute",
+                justifyContent: "center",
+                top: "10%",
+                width: "100vw",
+                height: "30px",
+              }}
+            >
               <PageTitle value="Search a City" />
             </div>
-            <input
-              id="autocompleteform"
-              {...getInputProps({
-                placeholder: "Enter a City Name",
-              })}
-            />
+            <div style={{ position: "absolute", width: "100%", top: "25%" }}>
+              <input
+                id="autocompleteform"
+                {...getInputProps({
+                  placeholder: "Enter a City Name",
+                })}
+              />
+            </div>
 
-            <div style={{ width: "100vw" }}>
+            <div style={{ width: "100vw", position: "absolute", top: "30%" }}>
               {suggestions.map((suggestion) => {
                 const style = {
                   backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
-                  position: "relative",
+                  width: "100%",
                   border: "solid black",
                 };
 
@@ -75,10 +94,19 @@ export default function SearchPage(props) {
           </>
         )}
       </PlacesAutocomplete>
-      <a href={`#city?placeId=${city.place_id}`}>
-        <button className="nav-btn" style={{ justifyContent: "center" }}>
-          Enter
-        </button>
+      <a
+        href={`#city?cityName=${city.name}&placeId=${city.place_id}`}
+        className="nav-btn"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          color: "black",
+          position: "absolute",
+          bottom: "25%",
+          left: "10%",
+        }}
+      >
+        Enter
       </a>
     </div>
   );

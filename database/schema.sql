@@ -22,9 +22,10 @@ CREATE TABLE "users" (
 CREATE TABLE "posts" (
 	"postId" serial NOT NULL,
 	"placeId" TEXT NOT NULL,
-	"description" TEXT NOT NULL,
-	"imageLink" TEXT NOT NULL,
+	"body" TEXT NOT NULL,
 	"createdBy" integer NOT NULL,
+	"recRestaurants" TEXT,
+	"recActivities" TEXT,
 	CONSTRAINT "posts_pk" PRIMARY KEY ("postId")
 ) WITH (
   OIDS=FALSE
@@ -36,7 +37,6 @@ CREATE TABLE "toVisit" (
 	"cityName" TEXT NOT NULL,
 	"createdBy" integer NOT NULL,
 	"isCompleted" BOOLEAN NOT NULL,
-	"placeId" integer NOT NULL,
 	"toVisitId" serial NOT NULL,
 	CONSTRAINT "toVisit_pk" PRIMARY KEY ("toVisitId")
 ) WITH (
