@@ -7,8 +7,17 @@ function ToVisit(props) {
     ? "form-check-label is-completed"
     : "form-check-label";
   return (
-    <li className="list-group-item">
-      <div className="form-check">
+    <div style={{ position: "relative", border: "solid gray", color: "white" }}>
+      <label htmlFor={idAttr}>{cityName}</label>
+      <div
+        className="form-check"
+        style={{
+          position: "relative",
+          top: "-37px",
+          right: "-170px",
+          width: "30px",
+        }}
+      >
         <input
           id={idAttr}
           type="checkbox"
@@ -16,11 +25,8 @@ function ToVisit(props) {
           className="form-check-input mr-2"
           onChange={() => props.toggleCompleted(toVisitId)}
         />
-        <label className={taskClass} htmlFor={idAttr}>
-          {cityName}
-        </label>
       </div>
-    </li>
+    </div>
   );
 }
 

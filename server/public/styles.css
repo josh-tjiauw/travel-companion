@@ -5,6 +5,7 @@ body {
 .container {
   background-color: #202324;
   display: flex;
+  position: relative;
   flex-wrap: wrap;
   justify-content: center;
   max-width: 100vw;

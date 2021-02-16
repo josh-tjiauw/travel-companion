@@ -63,7 +63,9 @@ export default class ToVisitPage extends React.Component {
   render() {
     return (
       <div className="container">
-        <PageTitle value="Your Future Visits" />
+        <div style={{ position: "absolute", top: "10%" }}>
+          <PageTitle value="Your Future Visits" />
+        </div>
         <div
           style={{
             position: "absolute",
@@ -75,7 +77,7 @@ export default class ToVisitPage extends React.Component {
         >
           <ToVisitForm onSubmit={this.addToVisit} />
         </div>
-        <div style={{ width: "315px" }}>
+        <div style={{ width: "315px", position: "absolute", top: "35%" }}>
           <ToVisitList
             toVisit={this.state.toVisit}
             toggleCompleted={this.toggleCompleted}

@@ -54,7 +54,7 @@ export default function SearchPage(props) {
             <div
               style={{
                 display: "flex",
-                position: "relative",
+                position: "absolute",
                 justifyContent: "center",
                 top: "10%",
                 width: "100vw",
@@ -63,7 +63,7 @@ export default function SearchPage(props) {
             >
               <PageTitle value="Search a City" />
             </div>
-            <div style={{ width: "100%" }}>
+            <div style={{ position: "absolute", width: "100%", top: "25%" }}>
               <input
                 id="autocompleteform"
                 {...getInputProps({
@@ -72,7 +72,7 @@ export default function SearchPage(props) {
               />
             </div>
 
-            <div style={{ width: "100vw" }}>
+            <div style={{ width: "100vw", position: "absolute", top: "30%" }}>
               {suggestions.map((suggestion) => {
                 const style = {
                   backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
@@ -97,7 +97,14 @@ export default function SearchPage(props) {
       <a
         href={`#city?cityName=${city.name}&placeId=${city.place_id}`}
         className="nav-btn"
-        style={{ display: "flex", justifyContent: "center", color: "black" }}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          color: "black",
+          position: "absolute",
+          bottom: "25%",
+          left: "10%",
+        }}
       >
         Enter
       </a>

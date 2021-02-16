@@ -9,7 +9,8 @@ export default function AppIcon() {
         display: "flex",
         position: "absolute",
         top: "5px",
-        left: "5px",
+        left: "10px",
+        zIndex: "1",
       }}
     >
       <i className="fas fa-city"></i>TC
