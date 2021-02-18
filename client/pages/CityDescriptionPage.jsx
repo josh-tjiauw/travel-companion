@@ -41,37 +41,22 @@ export default class CityDescriptionPage extends React.Component {
     return (
       <>
         <div className='container'>
-          <img
-            src={this.state.img}
-            alt='City'
-            style={{ width: '300px', height: '300px' }}
-          />
-          <div style={{ marginTop: '25px' }}>
-            <PageTitle value={this.props.cityName} />
-          </div>
+          <img src={this.state.img} alt='City' style={{ width: '100%' }} />
           <div>
-            <h2
-              style={{
-                marginTop: '25px',
-                height: '50px',
-                fontSize: '24px',
-                color: 'white'
-              }}
-            >
-              Have you been here?
-            </h2>
+            <PageTitle value={this.props.cityName} />
+            <PageTitle value='Have you been here?' />
           </div>
-          <div style={{ marginTop: '5px' }}>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <ReviewForm
               placeId={this.props.placeId}
               onSubmit={this.addReview}
             />
           </div>
-          <div>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <a
               href={`#cityReviews?cityName=${this.props.cityName}&placeId=${this.props.placeId}`}
             >
-              <button className='nav-btn'>View All Reviews</button>
+              <button className='cityDesc-btn'>View All Reviews</button>
             </a>
           </div>
         </div>

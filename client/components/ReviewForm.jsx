@@ -39,36 +39,34 @@ export default class ReviewForm extends React.Component {
       text: {
         color: 'white',
         fontSize: '16px'
-      },
-      row: {
-        marginTop: '20px'
-      },
-      form: { width: '245px', height: '325px' }
+      }
     };
     return (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <form onSubmit={this.handleSubmit} style={style.form}>
+      <div>
+        <form onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor='body' style={style.text}>
               Enter your review here!
             </label>
+            <br />
             <textarea
-              rows='3'
-              cols='33'
-              required
-              type='text'
               id='body'
+              rows='4'
+              cols='40'
+              type='text'
               value={this.state.body}
               onChange={this.handleChange}
               placeholder='Enter Review'
             />
           </div>
 
-          <div style={style.row}>
+          <div>
             <label htmlFor='recRestaurants' style={style.text}>
               Any recommended restaurants?
             </label>
+            <br />
             <input
+              className='cityDescInput'
               type='text'
               id='recRestaurants'
               value={this.state.recRestaurants}
@@ -77,11 +75,13 @@ export default class ReviewForm extends React.Component {
             />
           </div>
 
-          <div style={style.row}>
+          <div>
             <label htmlFor='recActivities' style={style.text}>
               Any recommended activities?
             </label>
+            <br />
             <input
+              className='cityDescInput'
               type='text'
               id='recActivities'
               value={this.state.recActivities}
@@ -90,8 +90,10 @@ export default class ReviewForm extends React.Component {
             />
           </div>
 
-          <div>
-            <button type='submit'>Submit</button>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <button className='form-btn' type='submit'>
+              Submit
+            </button>
           </div>
         </form>
       </div>

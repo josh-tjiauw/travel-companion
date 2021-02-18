@@ -47,7 +47,8 @@ export default function SearchPage(props) {
               }}
             >
               <input
-                style={{ fontSize: '20px', padding: '15px', width: '100%' }}
+                required
+                style={{ fontSize: '16px', padding: '5px', width: '100%' }}
                 {...getInputProps({
                   placeholder: 'Enter a City Name'
                 })}
@@ -77,10 +78,10 @@ export default function SearchPage(props) {
         )}
       </PlacesAutocomplete>
       <a
+        className={city.name === null ? 'hidden' : null}
         href={`#city?cityName=${city.name}&placeId=${city.place_id}`}
-        className='nav-btn'
       >
-        Enter
+        <button className='nav-btn'>Enter</button>
       </a>
     </div>
   );
