@@ -28,7 +28,8 @@ export default class ViewCityReviews extends React.Component {
           <PageTitle value={`${this.props.cityName}`} />
         </div>
         <div className='text'>
-          {this.state.reviews.length == 0 ? (
+          {this.state.reviews.length === 0
+            ? (
             <div
               style={{
                 marginTop: '50px',
@@ -44,9 +45,10 @@ export default class ViewCityReviews extends React.Component {
                 <button className='btn btn-primary'>Submit a Review!</button>
               </a>
             </div>
-          ) : (
-            this.state.reviews.map(rev => {
-              return (
+              )
+            : (
+                this.state.reviews.map(rev => {
+                  return (
                 <div key={rev.postId} className='reviewContainer'>
                   <div className='reviewRow'>
                     <i className='fas fa-user'></i>
@@ -66,9 +68,9 @@ export default class ViewCityReviews extends React.Component {
                     Food: {rev.recRestaurants}
                   </div>
                 </div>
-              );
-            })
-          )}
+                  );
+                })
+              )}
         </div>
       </div>
     );

@@ -75,6 +75,8 @@ textarea {
   width: 300px;
   margin: 10px auto;
   padding: 5px;
+  height: 175px;
+  overflow: auto;
 }
 
 .reviewRow {
