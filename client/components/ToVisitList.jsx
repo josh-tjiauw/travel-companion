@@ -1,28 +1,28 @@
-import React from "react";
+import React from 'react';
 
 function ToVisit(props) {
   const { toVisitId, cityName, isCompleted } = props.toVisit;
-  const idAttr = `toVisit-city-${toVisitId}`;
-  const taskClass = isCompleted
-    ? "form-check-label is-completed"
-    : "form-check-label";
+  // eslint-disable-next-line no-constant-condition
+  const idAttr = `toVisit-city-${toVisitId}`
+    ? 'form-check-label is-completed'
+    : 'form-check-label';
   return (
-    <div style={{ position: "relative", border: "solid gray", color: "white" }}>
+    <div style={{ position: 'relative', border: 'solid gray', color: 'white' }}>
       <label htmlFor={idAttr}>{cityName}</label>
       <div
-        className="form-check"
+        className='form-check'
         style={{
-          position: "relative",
-          top: "-37px",
-          right: "-170px",
-          width: "30px",
+          position: 'relative',
+          top: '-37px',
+          right: '-170px',
+          width: '30px'
         }}
       >
         <input
           id={idAttr}
-          type="checkbox"
+          type='checkbox'
           checked={isCompleted}
-          className="form-check-input mr-2"
+          className='form-check-input mr-2'
           onChange={() => props.toggleCompleted(toVisitId)}
         />
       </div>
@@ -33,7 +33,7 @@ function ToVisit(props) {
 export default function ToVisitList(props) {
   return (
     <div>
-      {props.toVisit.map((cityName) => {
+      {props.toVisit.map(cityName => {
         return (
           <ToVisit
             key={cityName.toVisitId}

@@ -1,48 +1,33 @@
-import React from "react";
+import React from 'react';
 import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng,
-} from "react-places-autocomplete";
-import PageTitle from "../components/PageTitle";
-import fixCityName from "../lib/fixCityName";
+  geocodeByAddress
+} from 'react-places-autocomplete';
+import PageTitle from '../components/PageTitle';
 
 export default function SearchPage(props) {
-  const [address, setAddress] = React.useState("");
-  const [coordinates, setCoordinates] = React.useState({
-    lat: null,
-    lng: null,
-  });
+  const [address, setAddress] = React.useState('');
 
   const [city, setCity] = React.useState({
     name: null,
-    place_id: null,
+    place_id: null
   });
 
-  const handleSelect = async (value) => {
+  const handleSelect = async value => {
     const results = await geocodeByAddress(value);
-    const latLng = await getLatLng(results[0]);
     const cityName = results[0].formatted_address;
     const placeId = results[0].place_id;
 
     setCity({ name: cityName, place_id: placeId });
     setAddress(value);
-    setCoordinates(latLng);
     props.getInfo(results);
   };
 
   const searchOptions = {
-    types: ["geocode"],
+    types: ['geocode']
   };
 
   return (
-    <div
-      style={{
-        backgroundColor: "#202324",
-        display: "flex",
-        flexWrap: "wrap",
-        height: "100vh",
-      }}
-    >
+    <div className='container'>
       <PlacesAutocomplete
         value={address}
         onChange={setAddress}
@@ -51,33 +36,31 @@ export default function SearchPage(props) {
       >
         {({ getInputProps, suggestions, getSuggestionItemProps }) => (
           <>
+            <div>
+              <PageTitle value='Search a City' />
+            </div>
             <div
               style={{
-                display: "flex",
-                position: "absolute",
-                justifyContent: "center",
-                top: "10%",
-                width: "100vw",
-                height: "30px",
+                display: 'flex',
+                justifyContent: 'center',
+                marginTop: '50px'
               }}
             >
-              <PageTitle value="Search a City" />
-            </div>
-            <div style={{ position: "absolute", width: "100%", top: "25%" }}>
               <input
-                id="autocompleteform"
+                required
+                style={{ fontSize: '16px', padding: '5px', width: '100%' }}
                 {...getInputProps({
-                  placeholder: "Enter a City Name",
+                  placeholder: 'Enter a City Name'
                 })}
               />
             </div>
 
-            <div style={{ width: "100vw", position: "absolute", top: "30%" }}>
-              {suggestions.map((suggestion) => {
+            <div>
+              {suggestions.map(suggestion => {
                 const style = {
-                  backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
-                  width: "100%",
-                  border: "solid black",
+                  backgroundColor: suggestion.active ? '#41b6e6' : '#fff',
+                  width: '100%',
+                  border: 'solid black'
                 };
 
                 return (
@@ -85,7 +68,7 @@ export default function SearchPage(props) {
                     key={suggestion.placeId}
                     {...getSuggestionItemProps(suggestion, { style })}
                   >
-                    <i className="fas fa-map-marker-alt"></i>
+                    <i className='fas fa-map-marker-alt'></i>
                     {suggestion.description}
                   </div>
                 );
@@ -95,18 +78,10 @@ export default function SearchPage(props) {
         )}
       </PlacesAutocomplete>
       <a
+        className={city.name === null ? 'hidden' : null}
         href={`#city?cityName=${city.name}&placeId=${city.place_id}`}
-        className="nav-btn"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          color: "black",
-          position: "absolute",
-          bottom: "25%",
-          left: "10%",
-        }}
       >
-        Enter
+        <button className='nav-btn'>Enter</button>
       </a>
     </div>
   );
