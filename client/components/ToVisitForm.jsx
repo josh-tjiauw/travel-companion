@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
 export default class ToVisitForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cityName: "",
+      cityName: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,25 +18,25 @@ export default class ToVisitForm extends React.Component {
     e.preventDefault();
     const newToVisit = {
       cityName: this.state.cityName,
-      isCompleted: false,
+      isCompleted: false
     };
     this.props.onSubmit(newToVisit);
-    this.setState({ cityName: "" });
+    this.setState({ cityName: '' });
   }
 
   render() {
     const value = this.state.cityName;
     return (
-      <form onSubmit={this.handleSubmit} style={{ width: "100%" }}>
+      <form onSubmit={this.handleSubmit} style={{ width: '100%' }}>
         <input
           required
-          type="text"
+          type='text'
           value={value}
           onChange={this.handleChange}
-          placeholder="Enter a city name"
-          style={{ width: "100%" }}
+          placeholder='Enter a city name'
+          style={{ width: '100%' }}
         />
-        <button type="submit">Add</button>
+        <button type='submit'>Add</button>
       </form>
     );
   }
