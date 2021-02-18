@@ -27,7 +27,8 @@ export default class ToVisitForm extends React.Component {
   render() {
     const value = this.state.cityName;
     return (
-      <form onSubmit={this.handleSubmit} style={{ width: '100%' }}>
+      <div>
+      <form onSubmit={this.handleSubmit} style={{ width: '100%', height: '60px', marginBottom: '10px' }}>
         <input
           required
           type='text'
@@ -36,8 +37,9 @@ export default class ToVisitForm extends React.Component {
           placeholder='Enter a city name'
           style={{ width: '100%' }}
         />
-        <button type='submit'>Add</button>
+        <button type='submit' className='toVisitSubmit btn-primary'>Add</button>
       </form>
+      </div>
     );
   }
 }

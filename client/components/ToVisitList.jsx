@@ -7,18 +7,11 @@ function ToVisit(props) {
     ? 'form-check-label is-completed'
     : 'form-check-label';
   return (
-    <div style={{ position: 'relative', border: 'solid gray', color: 'white' }}>
+    <div className='toVisitsDivContainer'>
       <label htmlFor={idAttr}>{cityName}</label>
-      <div
-        className='form-check'
-        style={{
-          position: 'relative',
-          top: '-37px',
-          right: '-170px',
-          width: '30px'
-        }}
-      >
+      <div className='form-check' style={{ position: 'absolute', right: '6px', top: '9px' }}>
         <input
+          style={{ transform: 'scale(3)' }}
           id={idAttr}
           type='checkbox'
           checked={isCompleted}
