@@ -22,7 +22,7 @@ app.get('/api/getImageData/:cityName', (req, res, next) => {
       res.json({ imageData: response.data.candidates[0].photos[0].photo_reference });
     })
     .catch(error => {
-      console.log('error');
+      next(error);
     });
 });
 

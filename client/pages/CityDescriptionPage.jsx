@@ -39,36 +39,69 @@ export default class CityDescriptionPage extends React.Component {
     return (
       <>
         <div className='container-fluid'>
-          <AppIcon />
-          <div
-            style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
-          >
-            <img
-              src={this.state.img}
-              alt='City'
-              style={{ width: '100%', maxWidth: '768px', height: 'auto' }}
-            />
+          <div style={{ position: 'absolute' }}>
+            <AppIcon />
           </div>
-          <div>
-            <PageTitle value={this.props.cityName} />
-            <PageTitle value='Have you been here?' />
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <ReviewForm
-              placeId={this.props.placeId}
-              onSubmit={this.addReview}
-            />
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <button
-              className='cityDesc-btn'
-              onClick={e => {
-                e.preventDefault();
-                window.location.href = `#cityReviews?cityName=${this.props.cityName}&placeId=${this.props.placeId}`;
+          <div className='row'>
+            <div
+              style={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center'
               }}
             >
-              View All Reviews
-            </button>
+              <img
+                src={this.state.img}
+                alt='City'
+                style={{ width: '100%', maxWidth: '768px', height: 'auto' }}
+              />
+            </div>
+          </div>
+
+          <div
+            className='row'
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center'
+            }}
+          >
+            <div className='col-12' style={{ margin: '5%' }}>
+              <h1 className='desc-hdr'>{this.props.cityName}</h1>
+            </div>
+
+            <div className='col-12' style={{ marginBottom: '5%' }}>
+              <h1 className='desc-hdr'>Have you been here?</h1>
+            </div>
+          </div>
+
+          <div
+            className='row'
+            style={{ display: 'flex', justifyContent: 'center' }}
+          >
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <ReviewForm
+                placeId={this.props.placeId}
+                onSubmit={this.addReview}
+              />
+            </div>
+          </div>
+
+          <div
+            className='row'
+            style={{ display: 'flex', justifyContent: 'center' }}
+          >
+            <div>
+              <button
+                className='cityDesc-btn'
+                onClick={e => {
+                  e.preventDefault();
+                  window.location.href = `#cityReviews?cityName=${this.props.cityName}&placeId=${this.props.placeId}`;
+                }}
+              >
+                View All Reviews
+              </button>
+            </div>
           </div>
         </div>
       </>

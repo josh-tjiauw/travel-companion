@@ -32,7 +32,7 @@ export default class ViewCityReviews extends React.Component {
         <div className='text'>
           {this.state.reviews.length === 0
             ? (
-            <div
+            <div className='row'
               style={{
                 marginTop: '50px',
                 display: 'flex',
@@ -40,12 +40,20 @@ export default class ViewCityReviews extends React.Component {
                 justifyContent: 'center'
               }}
             >
-              <h5>There are no reviews yet, be the first one to review!</h5>
-              <a
-                href={`#city?cityName=${this.props.cityName}&placeId=${this.props.placeId}`}
+              <div className="col-12 d-flex justify-content-center">
+                <h5>There are no reviews yet, be the first one to review!</h5>
+              </div>
+              <div className="col-12 d-flex justify-content-center">
+                <button
+                className='btn btn-primary'
+                onClick={e => {
+                  e.preventDefault();
+                  window.location.href = `#city?cityName=${this.props.cityName}&placeId=${this.props.placeId}`;
+                }}
               >
-                <button className='btn btn-primary'>Submit a Review!</button>
-              </a>
+                Submit a Review!
+              </button>
+              </div>
             </div>
               )
             : (
