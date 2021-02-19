@@ -35,17 +35,11 @@ export default class ReviewForm extends React.Component {
   }
 
   render() {
-    const style = {
-      text: {
-        color: 'white',
-        fontSize: '16px'
-      }
-    };
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
           <div>
-            <label htmlFor='body' style={style.text}>
+            <label htmlFor='body' className='form-text'>
               Enter your review here!
             </label>
             <br />
@@ -61,7 +55,7 @@ export default class ReviewForm extends React.Component {
           </div>
 
           <div>
-            <label htmlFor='recRestaurants' style={style.text}>
+            <label htmlFor='recRestaurants' className='form-text'>
               Any recommended restaurants?
             </label>
             <br />
@@ -76,7 +70,7 @@ export default class ReviewForm extends React.Component {
           </div>
 
           <div>
-            <label htmlFor='recActivities' style={style.text}>
+            <label htmlFor='recActivities' className='form-text'>
               Any recommended activities?
             </label>
             <br />
@@ -91,7 +85,7 @@ export default class ReviewForm extends React.Component {
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <button className='form-btn' type='submit'>
+            <button className='cityDesc-btn' type='submit'>
               Submit
             </button>
           </div>

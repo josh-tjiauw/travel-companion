@@ -1,4 +1,5 @@
 import React from 'react';
+import AppIcon from '../components/appicon';
 import PageTitle from '../components/PageTitle';
 import ReviewForm from '../components/ReviewForm';
 import config from '../config.json';
@@ -28,20 +29,26 @@ export default class CityDescriptionPage extends React.Component {
   }
 
   async componentDidMount() {
-    const request = new Request(
-      `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${this.props.cityName}&key=${config.apiKey}&inputtype=textquery&fields=photos`
-    );
-    const response = await fetch(request);
+    const response = await fetch(`/api/getImageData/${this.props.cityName}`);
     const data = await response.json();
-    const imgLink = await `https://maps.googleapis.com/maps/api/place/photo?photoreference=${data.candidates[0].photos[0].photo_reference}&key=${config.apiKey}&maxwidth=320&maxheight=400`;
+    const imgLink = await `https://maps.googleapis.com/maps/api/place/photo?photoreference=${data.imageData}&key=${config.apiKey}&maxwidth=768`;
     this.setState({ img: imgLink });
   }
 
   render() {
     return (
       <>
-        <div className='container'>
-          <img src={this.state.img} alt='City' style={{ width: '100%' }} />
+        <div className='container-fluid'>
+          <AppIcon />
+          <div
+            style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
+          >
+            <img
+              src={this.state.img}
+              alt='City'
+              style={{ width: '100%', maxWidth: '768px', height: 'auto' }}
+            />
+          </div>
           <div>
             <PageTitle value={this.props.cityName} />
             <PageTitle value='Have you been here?' />
@@ -53,11 +60,15 @@ export default class CityDescriptionPage extends React.Component {
             />
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <a
-              href={`#cityReviews?cityName=${this.props.cityName}&placeId=${this.props.placeId}`}
+            <button
+              className='cityDesc-btn'
+              onClick={e => {
+                e.preventDefault();
+                window.location.href = `#cityReviews?cityName=${this.props.cityName}&placeId=${this.props.placeId}`;
+              }}
             >
-              <button className='cityDesc-btn'>View All Reviews</button>
-            </a>
+              View All Reviews
+            </button>
           </div>
         </div>
       </>

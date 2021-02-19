@@ -1,4 +1,5 @@
 import React from 'react';
+import AppIcon from '../components/appicon';
 import PageTitle from '../components/PageTitle';
 
 export default class ViewCityReviews extends React.Component {
@@ -22,7 +23,8 @@ export default class ViewCityReviews extends React.Component {
 
   render() {
     return (
-      <div className='container'>
+      <div className='container-fluid'>
+        <AppIcon />
         <div>
           <PageTitle value='All Reviews for' />
           <PageTitle value={`${this.props.cityName}`} />
