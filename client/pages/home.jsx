@@ -2,19 +2,31 @@ import React from 'react';
 
 export default function Home(props) {
   return (
-    <div className='container'>
-      <div style={{ marginBottom: '33%' }}>
+    <div className='container-fluid'>
+      <div className='btn-container'>
         <h1 className='hdr-text'>Travel Companion</h1>
       </div>
-      <div style={{ marginBottom: '33%' }}>
-        <a href='#search' className='nav-btn'>
-          SEARCH A CITY
-        </a>
+      <div className='btn-container'>
+        <button
+          className='nav-btn'
+          onClick={e => {
+            e.preventDefault();
+            window.location.href = '#search';
+          }}
+        >
+          Search a City
+        </button>
       </div>
       <div>
-        <a href='#tovisit' className='nav-btn'>
-          VISIT WISHLIST
-        </a>
+        <button
+          className='nav-btn'
+          onClick={e => {
+            e.preventDefault();
+            window.location.href = '#tovisit';
+          }}
+        >
+          Visit Wishlist
+        </button>
       </div>
     </div>
   );

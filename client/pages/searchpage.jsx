@@ -2,6 +2,7 @@ import React from 'react';
 import PlacesAutocomplete, {
   geocodeByAddress
 } from 'react-places-autocomplete';
+import AppIcon from '../components/appicon';
 import PageTitle from '../components/PageTitle';
 
 export default function SearchPage(props) {
@@ -27,7 +28,8 @@ export default function SearchPage(props) {
   };
 
   return (
-    <div className='container'>
+    <div className='container-fluid'>
+      <AppIcon />
       <PlacesAutocomplete
         value={address}
         onChange={setAddress}
@@ -77,12 +79,15 @@ export default function SearchPage(props) {
           </>
         )}
       </PlacesAutocomplete>
-      <a
-        className={city.name === null ? 'hidden' : null}
-        href={`#city?cityName=${city.name}&placeId=${city.place_id}`}
+      <button
+        className={city.name === null ? 'hidden' : 'nav-btn'}
+        onClick={e => {
+          e.preventDefault();
+          window.location.href = `#city?cityName=${city.name}&placeId=${city.place_id}`;
+        }}
       >
-        <button className='nav-btn'>Enter</button>
-      </a>
+        Enter
+      </button>
     </div>
   );
 }

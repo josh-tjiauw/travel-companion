@@ -3,7 +3,6 @@ import Home from './pages/home';
 import SearchPage from './pages/searchPage';
 import ToVisitPage from './pages/toVisitPage';
 import { parseRoute } from './lib';
-import AppIcon from './components/appicon';
 import CityDescriptionPage from './pages/CityDescriptionPage';
 import ViewCityReviews from './pages/ViewCityReviews';
 
@@ -53,11 +52,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    return (
-      <>
-        <AppIcon />
-        {this.renderPage()}
-      </>
-    );
+    return <>{this.renderPage()}</>;
   }
 }

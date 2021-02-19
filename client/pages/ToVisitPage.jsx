@@ -1,4 +1,5 @@
 import React from 'react';
+import AppIcon from '../components/appicon';
 import PageTitle from '../components/PageTitle';
 import ToVisitForm from '../components/ToVisitForm';
 import ToVisitList from '../components/ToVisitList';
@@ -62,22 +63,15 @@ export default class ToVisitPage extends React.Component {
 
   render() {
     return (
-      <div className='container'>
-        <div style={{ position: 'absolute', top: '10%' }}>
+      <div className='container-fluid'>
+        <AppIcon />
+        <div>
           <PageTitle value='Your Future Visits' />
         </div>
-        <div
-          style={{
-            position: 'absolute',
-            top: '20%',
-            width: '95vw',
-            left: '15px',
-            margin: '0px auto'
-          }}
-        >
+        <div className='visitInputContainer'>
           <ToVisitForm onSubmit={this.addToVisit} />
         </div>
-        <div style={{ width: '315px', position: 'absolute', top: '35%' }}>
+        <div>
           <ToVisitList
             toVisit={this.state.toVisit}
             toggleCompleted={this.toggleCompleted}
