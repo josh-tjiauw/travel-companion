@@ -1,6 +1,7 @@
 {
   "name": "final-project",
   "version": "1.0.0",
+  "author": "Josh Tjiauw",
   "private": true,
   "description": "A full stack JavaScript solo project.",
   "main": "server/index.js",
@@ -69,5 +70,8 @@
     "webpack": "^5.11.1",
     "webpack-cli": "^4.3.1",
     "webpack-dev-server": "^3.11.1"
+  },
+  "engines": {
+    "node": "v10.15.3"
   }
 }
