@@ -118,6 +118,15 @@ textarea {
 }
 
 @media screen and (min-width: 1025px) {
+  .visitInputContainer {
+    margin-top: 50px;
+  }
+  .visitForm {
+    width: 800px;
+  }
+  .visitList {
+    width: 800px;
+  }
   .nav-btn:hover,
   .cityDesc-btn:hover {
     transform: scale(1.2);
@@ -148,6 +157,13 @@ textarea {
 }
 
 @media screen and (max-width: 1024px) {
+  .visitForm {
+    width: 100%;
+  }
+  .visitList {
+    width: 100%;
+  }
+
   .form-text {
     font-size: 18px;
   }

@@ -68,14 +68,18 @@ export default class ToVisitPage extends React.Component {
         <div>
           <PageTitle value='Your Future Visits' />
         </div>
-        <div className='visitInputContainer'>
+        <div className="row">
+          <div className='col-12 d-flex justify-content-center visitInputContainer' style={{ display: 'flex', justifyContent: 'center' }}>
           <ToVisitForm onSubmit={this.addToVisit} />
         </div>
-        <div>
+        </div>
+        <div className="row">
+          <div className='col-12 d-flex justify-content-center'>
           <ToVisitList
             toVisit={this.state.toVisit}
             toggleCompleted={this.toggleCompleted}
           />
+        </div>
         </div>
       </div>
     );

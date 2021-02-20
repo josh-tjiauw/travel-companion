@@ -27,7 +27,7 @@ export default class ToVisitForm extends React.Component {
   render() {
     const value = this.state.cityName;
     return (
-      <div>
+      <div className='visitForm'>
       <form onSubmit={this.handleSubmit} style={{ width: '100%', height: '60px', marginBottom: '10px' }}>
         <input
           required

@@ -25,7 +25,7 @@ function ToVisit(props) {
 
 export default function ToVisitList(props) {
   return (
-    <div>
+    <div className='visitList'>
       {props.toVisit.map(cityName => {
         return (
           <ToVisit
