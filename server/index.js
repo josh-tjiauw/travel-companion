@@ -4,7 +4,6 @@ const axios = require('axios');
 const config = require('../client/config.json');
 const express = require('express');
 const db = require('./db');
-const ClientError = require('./client-error');
 const errorMiddleware = require('./error-middleware');
 const staticMiddleware = require('./static-middleware');
 
@@ -137,31 +136,6 @@ app.post('/api/city/:placeId/posts', (req, res, next) => {
         error: 'An unexpected error occurred.'
       });
     });
-});
-
-app.get('/api/city/:placeId/posts/:postId', (req, res, next) => {
-  const placeId = parseInt(req.params.placeId, 10);
-  const postId = parseInt(req.param.postId, 10);
-  if (!placeId) {
-    throw new ClientError(400, 'placeId must be a positive integer');
-  }
-  const sql = `
-    select "placeId",
-    "body",
-    "recRestaurants",
-    "recActivities"
-    from "posts"
-    where "postId" = $1
-  `;
-  const params = [postId];
-  db.query(sql, params)
-    .then(result => {
-      if (!result.rows[0]) {
-        throw new ClientError(404, `cannot find product with placeId ${placeId}`);
-      }
-      res.json(result.rows[0]);
-    })
-    .catch(err => next(err));
 });
 
 app.use(errorMiddleware);
