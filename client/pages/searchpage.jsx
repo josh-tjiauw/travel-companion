@@ -57,6 +57,7 @@ export default function SearchPage(props) {
               />
             </div>
 
+            <div>
               {suggestions.map(suggestion => {
                 const style = {
                   backgroundColor: suggestion.active ? '#41b6e6' : '#fff',
@@ -74,6 +75,7 @@ export default function SearchPage(props) {
                   </div>
                 );
               })}
+            </div>
           </>
         )}
       </PlacesAutocomplete>

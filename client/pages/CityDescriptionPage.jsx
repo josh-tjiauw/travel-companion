@@ -1,7 +1,6 @@
 import React from 'react';
 import AppIcon from '../components/appicon';
 import ReviewForm from '../components/ReviewForm';
-import config from '../config.json';
 
 export default class CityDescriptionPage extends React.Component {
   constructor(props) {
@@ -30,7 +29,7 @@ export default class CityDescriptionPage extends React.Component {
   async componentDidMount() {
     const response = await fetch(`/api/getImageData/${this.props.cityName}`);
     const data = await response.json();
-    const imgLink = await `https://maps.googleapis.com/maps/api/place/photo?photoreference=${data.imageData}&key=${config.apiKey}&maxwidth=768`;
+    const imgLink = await data.imageData;
     this.setState({ img: imgLink });
   }
 

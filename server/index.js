@@ -1,7 +1,6 @@
 /* eslint-disable node/handle-callback-err */
 require('dotenv/config');
 const axios = require('axios');
-const config = require('../client/config.json');
 const express = require('express');
 const db = require('./db');
 const errorMiddleware = require('./error-middleware');
@@ -15,10 +14,10 @@ app.use(jsonMiddleware);
 
 app.get('/api/getImageData/:cityName', (req, res, next) => {
   const { cityName } = req.params;
-  const url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${cityName}&key=${config.apiKey}&inputtype=textquery&fields=photos`;
+  const url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${cityName}&key=${process.env.GOOGLE_API_KEY}&inputtype=textquery&fields=photos`;
   axios.get(url)
     .then(response => {
-      res.json({ imageData: response.data.candidates[0].photos[0].photo_reference });
+      res.json({ imageData: `https://maps.googleapis.com/maps/api/place/photo?photoreference=${response.data.candidates[0].photos[0].photo_reference}&key=${process.env.GOOGLE_API_KEY}&maxwidth=768` });
     })
     .catch(error => {
       next(error);
