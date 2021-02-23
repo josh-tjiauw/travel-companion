@@ -1,8 +1,8 @@
 import React from 'react';
 import AppIcon from '../components/appicon';
 import PageTitle from '../components/PageTitle';
-import ToVisitForm from '../components/toVisitForm';
-import ToVisitList from '../components/toVisitList';
+import ToVisitForm from '../components/ToVisitForm';
+import ToVisitList from '../components/ToVisitList';
 
 export default class ToVisitPage extends React.Component {
   constructor(props) {
