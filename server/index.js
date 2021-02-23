@@ -1,10 +1,8 @@
 /* eslint-disable node/handle-callback-err */
 require('dotenv/config');
 const axios = require('axios');
-const config = require('../client/config.json');
 const express = require('express');
 const db = require('./db');
-const ClientError = require('./client-error');
 const errorMiddleware = require('./error-middleware');
 const staticMiddleware = require('./static-middleware');
 
@@ -16,10 +14,10 @@ app.use(jsonMiddleware);
 
 app.get('/api/getImageData/:cityName', (req, res, next) => {
   const { cityName } = req.params;
-  const url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${cityName}&key=${config.apiKey}&inputtype=textquery&fields=photos`;
+  const url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${cityName}&key=${process.env.GOOGLE_API_KEY}&inputtype=textquery&fields=photos`;
   axios.get(url)
     .then(response => {
-      res.json({ imageData: response.data.candidates[0].photos[0].photo_reference });
+      res.json({ imageData: `https://maps.googleapis.com/maps/api/place/photo?photoreference=${response.data.candidates[0].photos[0].photo_reference}&key=${process.env.GOOGLE_API_KEY}&maxwidth=768` });
     })
     .catch(error => {
       next(error);
@@ -139,34 +137,10 @@ app.post('/api/city/:placeId/posts', (req, res, next) => {
     });
 });
 
-app.get('/api/city/:placeId/posts/:postId', (req, res, next) => {
-  const placeId = parseInt(req.params.placeId, 10);
-  const postId = parseInt(req.param.postId, 10);
-  if (!placeId) {
-    throw new ClientError(400, 'placeId must be a positive integer');
-  }
-  const sql = `
-    select "placeId",
-    "body",
-    "recRestaurants",
-    "recActivities"
-    from "posts"
-    where "postId" = $1
-  `;
-  const params = [postId];
-  db.query(sql, params)
-    .then(result => {
-      if (!result.rows[0]) {
-        throw new ClientError(404, `cannot find product with placeId ${placeId}`);
-      }
-      res.json(result.rows[0]);
-    })
-    .catch(err => next(err));
-});
-
 app.use(errorMiddleware);
 
-app.listen(process.env.PORT, () => {
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
   // eslint-disable-next-line no-console
   console.log('Listening on port', process.env.PORT);
 });

@@ -12,6 +12,7 @@ module.exports = {
   output: {
     path: serverPublicPath
   },
+  mode: 'production',
   module: {
     rules: [
       {
