@@ -5,6 +5,7 @@ const express = require('express');
 const db = require('./db');
 const errorMiddleware = require('./error-middleware');
 const staticMiddleware = require('./static-middleware');
+const path = require('path');
 
 const app = express();
 app.use(staticMiddleware);
@@ -135,6 +136,12 @@ app.post('/api/city/:placeId/posts', (req, res, next) => {
         error: 'An unexpected error occurred.'
       });
     });
+});
+
+app.use((req, res) => {
+  res.sendFile('/index.html', {
+    root: path.join(__dirname, 'public')
+  });
 });
 
 app.use(errorMiddleware);
