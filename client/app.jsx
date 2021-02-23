@@ -3,8 +3,8 @@ import Home from './pages/home';
 import SearchPage from './pages/searchPage';
 import ToVisitPage from './pages/toVisitPage';
 import { parseRoute } from './lib';
-import CityDescriptionPage from './pages/CityDescriptionPage';
-import ViewCityReviews from './pages/ViewCityReviews';
+import CityDescriptionPage from './pages/cityDescriptionPage';
+import ViewCityReviews from './pages/viewCityReviews';
 
 export default class App extends React.Component {
   constructor(props) {
