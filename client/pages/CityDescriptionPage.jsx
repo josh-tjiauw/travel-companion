@@ -1,6 +1,6 @@
 import React from 'react';
 import AppIcon from '../components/appicon';
-import ReviewForm from '../components/reviewForm';
+import ReviewForm from '../components/ReviewForm';
 
 export default class CityDescriptionPage extends React.Component {
   constructor(props) {

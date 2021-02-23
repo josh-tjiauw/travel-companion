@@ -1,10 +1,10 @@
 import React from 'react';
 import Home from './pages/home';
-import SearchPage from './pages/searchPage';
-import ToVisitPage from './pages/toVisitPage';
+import SearchPage from './pages/searchpage';
+import ToVisitPage from './pages/ToVisitPage';
 import { parseRoute } from './lib';
-import CityDescriptionPage from './pages/cityDescriptionPage';
-import ViewCityReviews from './pages/viewCityReviews';
+import CityDescriptionPage from './pages/CityDescriptionPage';
+import ViewCityReviews from './pages/ViewCityReviews';
 
 export default class App extends React.Component {
   constructor(props) {
