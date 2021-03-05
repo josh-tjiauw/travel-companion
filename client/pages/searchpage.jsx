@@ -42,6 +42,7 @@ export default function SearchPage(props) {
               <PageTitle value='Search a City' />
             </div>
             <div
+            className='search_container'
               style={{
                 display: 'flex',
                 justifyContent: 'center',
@@ -57,7 +58,7 @@ export default function SearchPage(props) {
               />
             </div>
 
-            <div>
+            <div className='suggestion_div'>
               {suggestions.map(suggestion => {
                 const style = {
                   backgroundColor: suggestion.active ? '#41b6e6' : '#fff',

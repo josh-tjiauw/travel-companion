@@ -118,6 +118,15 @@ textarea {
 }
 
 @media screen and (min-width: 1025px) {
+  .suggestion_div {
+    width: 600px;
+    margin: 0px auto;
+  }
+  .search_container {
+    width: 600px;
+    margin: 0px auto;
+  }
+
   .visitInputContainer {
     margin-top: 50px;
   }
@@ -157,6 +166,11 @@ textarea {
 }
 
 @media screen and (max-width: 1024px) {
+  .search_container {
+    max-width: 600px;
+    margin: 0px auto;
+  }
+
   .visitForm {
     width: 100%;
   }
