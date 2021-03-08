@@ -244,6 +244,11 @@ textarea {
     font-size: 24px;
   }
 
+  .suggestion_div {
+    width: 540px;
+    margin: 0px auto;
+  }
+
   .text {
     font-size: 16px;
   }
@@ -273,12 +278,17 @@ textarea {
     font-size: 16px;
   }
 
+  .suggestion_div {
+    width: 350px;
+    margin: 0px auto;
+  }
+
   .reviewText {
   font-size: 16px;
 }
 
   .reviewContainer {
-    width: 350px;
+    width: 345px;
     margin: 20px auto;
     padding: 5px;
   }
@@ -297,6 +307,11 @@ textarea {
   .hdr-text {
     margin-top: 15%;
     font-size: 24px;
+  }
+
+  .suggestion_div {
+    width: 290px;
+    margin: 0px auto;
   }
 
   .text {

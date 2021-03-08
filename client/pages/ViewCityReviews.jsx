@@ -40,7 +40,7 @@ export default class ViewCityReviews extends React.Component {
                 justifyContent: 'center'
               }}
             >
-              <div className="col-12 d-flex justify-content-center">
+              <div className="col-12 d-flex justify-content-center text">
                 <h5>There are no reviews yet, be the first one to review!</h5>
               </div>
               <div className="col-12 d-flex justify-content-center">
