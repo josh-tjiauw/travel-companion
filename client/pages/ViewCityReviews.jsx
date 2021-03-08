@@ -67,7 +67,7 @@ export default class ViewCityReviews extends React.Component {
                       </div>
                     <div>
                       <i className='fas fa-comment-dots text'></i>
-                      <span className="reviewText">{rev.body}</span>
+                      <span className="reviewText"> {rev.body}</span>
                     </div>
                   </div>
 
