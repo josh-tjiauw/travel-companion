@@ -75,7 +75,7 @@ export default class ViewCityReviews extends React.Component {
                     <span className="text">
                       <i className='fas fa-dice'></i>Activities:
                     </span>
-                    <span className="reviewText">{rev.recActivities}</span>
+                    <span className="reviewText"> {rev.recActivities}</span>
                   </div>
                   <div className='reviewRow'>
                     <span className="text">
