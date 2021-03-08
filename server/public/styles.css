@@ -262,6 +262,37 @@ textarea {
     padding: 5px;
   }
 }
+
+@media screen and (max-width: 375px) {
+  .hdr-text {
+    margin-top: 15%;
+    font-size: 24px;
+  }
+
+  .text {
+    font-size: 16px;
+  }
+
+  .reviewText {
+  font-size: 16px;
+}
+
+  .reviewContainer {
+    width: 350px;
+    margin: 20px auto;
+    padding: 5px;
+  }
+
+  .btn-container {
+    margin-bottom: 33%;
+  }
+
+  .hdr-text {
+    margin-top: 15%;
+  }
+}
+
+
 @media screen and (max-width: 320px) {
   .hdr-text {
     margin-top: 15%;
