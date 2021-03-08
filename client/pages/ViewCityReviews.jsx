@@ -29,7 +29,7 @@ export default class ViewCityReviews extends React.Component {
           <PageTitle value='All Reviews for' />
           <PageTitle value={`${this.props.cityName}`} />
         </div>
-        <div className='text'>
+        <div>
           {this.state.reviews.length === 0
             ? (
             <div className='row'
@@ -61,21 +61,27 @@ export default class ViewCityReviews extends React.Component {
                   return (
                 <div key={rev.postId} className='reviewContainer'>
                   <div className='reviewRow'>
-                    <i className='fas fa-user'></i>
-                    {`${rev.firstName} ${rev.lastName}'s review:`}
+
+                    <div className="text">
+                      <i className='fas fa-user'></i>{`${rev.firstName} ${rev.lastName}'s Review`}
+                      </div>
                     <div>
-                      <i className='fas fa-comment-dots'></i>
-                      {rev.body}
+                      <i className='fas fa-comment-dots text'></i>
+                      <span className="reviewText">{rev.body}</span>
                     </div>
                   </div>
 
                   <div className='reviewRow'>
-                    <i className='fas fa-dice'></i>
-                    Activities: {rev.recActivities}
+                    <span className="text">
+                      <i className='fas fa-dice'></i>Activities:
+                    </span>
+                    <span className="reviewText">{rev.recActivities}</span>
                   </div>
                   <div className='reviewRow'>
-                    <i className='fas fa-utensils'></i>
-                    Food: {rev.recRestaurants}
+                    <span className="text">
+                      <i className='fas fa-utensils'></i>Food:
+                    </span>
+                    <span className='reviewText'> {rev.recRestaurants}</span>
                   </div>
                 </div>
                   );

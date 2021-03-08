@@ -153,6 +153,10 @@ textarea {
     font-size: 30px;
   }
 
+  .reviewText {
+  font-size: 30px;
+}
+
   .btn-container {
     margin-bottom: 15%;
   }
@@ -194,6 +198,10 @@ textarea {
     font-size: 30px;
   }
 
+  .reviewText {
+  font-size: 30px;
+}
+
   .btn-container {
     margin-bottom: 20%;
   }
@@ -214,6 +222,10 @@ textarea {
   .text {
     font-size: 24px;
   }
+
+  .reviewText {
+  font-size: 24px;
+}
 
   .btn-container {
     margin-bottom: 33%;
@@ -236,6 +248,10 @@ textarea {
     font-size: 16px;
   }
 
+  .reviewText {
+  font-size: 18px;
+}
+
   .btn-container {
     margin-bottom: 10%;
   }
@@ -255,6 +271,10 @@ textarea {
   .text {
     font-size: 16px;
   }
+
+  .reviewText {
+  font-size: 16px;
+}
 
   .reviewContainer {
     width: 300px;
