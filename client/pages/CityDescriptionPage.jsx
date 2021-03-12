@@ -50,7 +50,7 @@ export default class CityDescriptionPage extends React.Component {
             >
               <img
                 src={this.state.img}
-                alt='City'
+                alt={`City of ${this.props.cityName}`}
                 style={{ width: '100%', maxWidth: '768px', height: 'auto' }}
               />
             </div>
