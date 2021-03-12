@@ -7,8 +7,8 @@ function ToVisit(props) {
     ? 'form-check-label is-completed'
     : 'form-check-label';
   return (
-    <div className='toVisitsDivContainer' onClick={() => props.toggleCompleted(toVisitId)}>
-      <label>{cityName}</label>
+    <div className='toVisitsDivContainer'>
+      <label onClick={() => props.toggleCompleted(toVisitId)}>{cityName}</label>
       <div className='form-check' style={{ position: 'absolute', right: '6px', top: '9px' }}>
         <input
           style={{ transform: 'scale(3)' }}
