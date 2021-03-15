@@ -29,6 +29,10 @@ export default class CityDescriptionPage extends React.Component {
   async componentDidMount() {
     const response = await fetch(`/api/getImageData/${this.props.cityName}`);
     const data = await response.json();
+    if (!data.imageData) {
+      window.location.href = '#city?cityName=NotFound';
+      return null;
+    }
     const imgLink = await data.imageData;
     this.setState({ img: imgLink });
   }

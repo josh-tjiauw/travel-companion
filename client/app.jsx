@@ -5,6 +5,7 @@ import ToVisitPage from './pages/ToVisitPage';
 import { parseRoute } from './lib';
 import CityDescriptionPage from './pages/CityDescriptionPage';
 import ViewCityReviews from './pages/ViewCityReviews';
+import NotFound from './pages/NotFound';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -41,12 +42,19 @@ export default class App extends React.Component {
     if (route.path === 'city') {
       const placeId = route.params.get('placeId');
       const cityName = route.params.get('cityName');
-      return <CityDescriptionPage cityName={cityName} placeId={placeId} />;
+      if (cityName === 'NotFound') {
+        return <NotFound />;
+      } else {
+        return <CityDescriptionPage cityName={cityName} placeId={placeId} />;
+      }
     }
     if (route.path === 'cityReviews') {
       const placeId = route.params.get('placeId');
       const cityName = route.params.get('cityName');
       return <ViewCityReviews cityName={cityName} placeId={placeId} />;
+    }
+    if (route.path === '#city?NotFound') {
+      return <NotFound />;
     }
     return null;
   }
