@@ -1,12 +1,14 @@
 import React from 'react';
 import AppIcon from '../components/appicon';
 import ReviewForm from '../components/ReviewForm';
+import * as ReactBootstrap from 'react-bootstrap';
 
 export default class CityDescriptionPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       img: null,
+      isLoading: true,
       reviews: []
     };
     this.addReview = this.addReview.bind(this);
@@ -34,12 +36,17 @@ export default class CityDescriptionPage extends React.Component {
       return null;
     }
     const imgLink = await data.imageData;
-    this.setState({ img: imgLink });
+    this.setState({ img: imgLink, isLoading: false });
   }
 
   render() {
     return (
-      <>
+      this.state.isLoading === true
+        ? (<div className='col-12 d-flex justify-content-center'>
+              <ReactBootstrap.Spinner animation='border' />
+              Loading
+            </div>)
+        : (<>
         <div className='container-fluid'>
           <div style={{ position: 'absolute' }}>
             <AppIcon />
@@ -106,7 +113,7 @@ export default class CityDescriptionPage extends React.Component {
             </div>
           </div>
         </div>
-      </>
+      </>)
     );
   }
 }
