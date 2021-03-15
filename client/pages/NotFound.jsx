@@ -1,6 +1,5 @@
 import React from 'react';
 import AppIcon from '../components/appicon';
-import PageTitle from '../components/PageTitle';
 
 export default function NotFound(props) {
   return (

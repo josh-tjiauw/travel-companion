@@ -3,12 +3,14 @@ import AppIcon from '../components/appicon';
 import PageTitle from '../components/PageTitle';
 import ToVisitForm from '../components/ToVisitForm';
 import ToVisitList from '../components/ToVisitList';
+import * as ReactBootstrap from 'react-bootstrap';
 
 export default class ToVisitPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      toVisit: []
+      toVisit: [],
+      isLoading: true
     };
     this.addToVisit = this.addToVisit.bind(this);
     this.toggleCompleted = this.toggleCompleted.bind(this);
@@ -21,7 +23,7 @@ export default class ToVisitPage extends React.Component {
   getAllToVisits() {
     fetch('/api/toVisit')
       .then(res => res.json())
-      .then(data => this.setState({ toVisit: data }));
+      .then(data => this.setState({ toVisit: data, isLoading: false }));
   }
 
   addToVisit(newToVisit) {
@@ -75,11 +77,20 @@ export default class ToVisitPage extends React.Component {
         </div>
         <div className="row">
           <div className='col-12 d-flex justify-content-center'>
-          <ToVisitList
+          {this.state.isLoading === true
+            ? (
+            <div className='col-12 d-flex justify-content-center'>
+              <ReactBootstrap.Spinner animation='border' />
+              Loading
+            </div>
+              )
+            : (
+            <ToVisitList
             toVisit={this.state.toVisit}
             toggleCompleted={this.toggleCompleted}
           />
-        </div>
+              )}
+          </div>
         </div>
       </div>
     );
