@@ -116,7 +116,8 @@ app.get('/api/city/:placeId/posts', (req, res, next) => {
 app.post('/api/city/:placeId/posts', (req, res, next) => {
   const params = [req.body.body, req.body.recRestaurants, req.body.recActivities, req.body.placeId];
   if (params[0] === '') {
-    res.status(400).send('Cannot leave this field blank.');
+    res.json('Cannot leave this field blank.');
+    res.status(400);
     return;
   }
   const sql = `

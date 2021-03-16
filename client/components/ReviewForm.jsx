@@ -6,7 +6,8 @@ export default class ReviewForm extends React.Component {
     this.state = {
       body: '',
       recRestaurants: '',
-      recActivities: ''
+      recActivities: '',
+      submitted: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,7 +32,7 @@ export default class ReviewForm extends React.Component {
       placeId: this.props.placeId
     };
     this.props.onSubmit(newReview);
-    this.setState({ body: '', recRestaurants: '', recActivities: '' });
+    this.setState({ body: '', recRestaurants: '', recActivities: '', submitted: true });
   }
 
   render() {
@@ -44,6 +45,7 @@ export default class ReviewForm extends React.Component {
             </label>
             <br />
             <textarea
+              required
               id='body'
               rows='4'
               cols='40'
@@ -60,6 +62,7 @@ export default class ReviewForm extends React.Component {
             </label>
             <br />
             <input
+              required
               className='cityDescInput'
               type='text'
               id='recRestaurants'
@@ -75,6 +78,7 @@ export default class ReviewForm extends React.Component {
             </label>
             <br />
             <input
+              required
               className='cityDescInput'
               type='text'
               id='recActivities'
@@ -85,9 +89,13 @@ export default class ReviewForm extends React.Component {
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <button className='cityDesc-btn' type='submit'>
+            {this.state.submitted === true
+              ? (<button className='cityDesc-btn submitted'>
+              Your Review was Submitted!
+            </button>)
+              : <button className='cityDesc-btn' type='submit'>
               Submit
-            </button>
+            </button>}
           </div>
         </form>
       </div>

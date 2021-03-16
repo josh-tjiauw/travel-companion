@@ -9,6 +9,8 @@ export default class CityDescriptionPage extends React.Component {
     this.state = {
       img: null,
       isLoading: true,
+      error: false,
+      errorMessage: null,
       reviews: []
     };
     this.addReview = this.addReview.bind(this);
@@ -22,7 +24,13 @@ export default class CityDescriptionPage extends React.Component {
       },
       body: JSON.stringify(review)
     })
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) {
+          this.setState({ error: true, errorMessage: res.statusText });
+          return null;
+        }
+        res.json();
+      })
       .then(data => {
         this.setState({ reviews: [data, ...this.state.reviews] });
       });
@@ -61,7 +69,7 @@ export default class CityDescriptionPage extends React.Component {
             >
               <img
                 src={this.state.img}
-                alt={`City of ${this.props.cityName}`}
+                alt={`Photograph of ${this.props.cityName}`}
                 style={{ width: '100%', maxWidth: '768px', height: 'auto' }}
               />
             </div>
@@ -101,6 +109,7 @@ export default class CityDescriptionPage extends React.Component {
             style={{ display: 'flex', justifyContent: 'center' }}
           >
             <div>
+              {this.state.error === true ? (`${this.state.errorMessage}`) : (null)}
               <button
                 className='cityDesc-btn'
                 onClick={e => {
