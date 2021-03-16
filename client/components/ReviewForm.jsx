@@ -57,22 +57,6 @@ export default class ReviewForm extends React.Component {
           </div>
 
           <div>
-            <label htmlFor='recRestaurants' className='form-text'>
-              Any recommended restaurants?
-            </label>
-            <br />
-            <input
-              required
-              className='cityDescInput'
-              type='text'
-              id='recRestaurants'
-              value={this.state.recRestaurants}
-              onChange={this.handleChange}
-              placeholder='Recommended restaurants'
-            />
-          </div>
-
-          <div>
             <label htmlFor='recActivities' className='form-text'>
               Any recommended activities?
             </label>
@@ -85,6 +69,22 @@ export default class ReviewForm extends React.Component {
               value={this.state.recActivities}
               onChange={this.handleChange}
               placeholder='Recommended activities'
+            />
+          </div>
+
+          <div>
+            <label htmlFor='recRestaurants' className='form-text'>
+              Any recommended restaurants?
+            </label>
+            <br />
+            <input
+              required
+              className='cityDescInput'
+              type='text'
+              id='recRestaurants'
+              value={this.state.recRestaurants}
+              onChange={this.handleChange}
+              placeholder='Recommended restaurants'
             />
           </div>
 
