@@ -7,10 +7,12 @@ export default function NotFound(props) {
       <AppIcon />
       <div className="not-found">
         <h1 className='text d-flex'>Sorry! That City Name is Invalid.</h1>
-        <button className='btn-primary' onClick={e => {
-          e.preventDefault();
-          window.location.href = '#search';
-        }}>Search Another City</button>
+        <div className="col-12 d-flex justify-content-center">
+          <button className='btn-primary' onClick={e => {
+            e.preventDefault();
+            window.location.href = '#search';
+          }}>Search Another City</button>
+        </div>
       </div>
     </div>
   );
