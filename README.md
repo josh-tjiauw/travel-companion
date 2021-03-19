@@ -6,8 +6,8 @@ Current Feature List:
 
 -User can navigate to home, search, and city page using hash routing.<br />
 -User can create a visit wishlist.<br />
--User can checkmark their wishlist if they have visited it.
--User can utilize the autocomplete function to search a city.
--User can see a preview image of the city.
--User can write a post about how their experience was travelling to a selected city.
--User can view other user's posts.
+-User can checkmark their wishlist if they have visited it.<br />
+-User can utilize the autocomplete function to search a city.<br />
+-User can see a preview image of the city.<br />
+-User can write a post about how their experience was travelling to a selected city.<br />
+-User can view other user's posts.<br />
