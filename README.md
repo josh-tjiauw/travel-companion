@@ -4,7 +4,7 @@ A full stack application written in HTML, CSS Bootstrap, and JavaScript React fo
 
 Current Feature List:
 
--User can navigate to home, search, and city page using hash routing.<br />
+*User can navigate to home, search, and city page using hash routing.<br />
 -User can create a visit wishlist.<br />
 -User can checkmark their wishlist if they have visited it.<br />
 -User can utilize the autocomplete function to search a city.<br />
