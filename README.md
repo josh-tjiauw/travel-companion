@@ -5,11 +5,22 @@ A full stack application written in HTML, CSS Bootstrap, and JavaScript React fo
 
 ## Current Feature List:
 <ul>
-<li>User can navigate to home, search, and city page using hash routing.</li>
-<li>User can create a visit wishlist.</li>
-<li>User can checkmark their wishlist if they have visited it.</li>
-<li>User can utilize the autocomplete function to search a city.</li>
-<li>User can see a preview image of the city.</li>
-<li>User can write a post about how their experience was travelling to a selected city.</li>
-<li>User can view other user's posts.</li>
+  <li>User can navigate to home, search, and city page using hash routing.</li>
+  <li>User can create a visit wishlist.</li>
+  <li>User can checkmark their wishlist if they have visited it.</li>
+  <li>User can utilize the autocomplete function to search a city.</li>
+  <li>User can see a preview image of the city.</li>
+  <li>User can write a post about how their experience was travelling to a selected city.</li>
+  <li>User can view other user's posts.</li>
 </ul>
+
+## Planned Additions:
+<ul>
+  <li>User can create a profile</li>
+  <li>User can view other's profiles</li>
+  <li>User can click on a user comment</li>
+  <li>Implement a "like" system for user comments</li>
+</ul>
+
+## What I learned from this project:
+<p>This was my first hands-on solo project that I planned using <a href="https://www.figma.com/">Figma</a>.</p>
