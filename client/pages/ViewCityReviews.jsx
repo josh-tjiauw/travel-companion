@@ -72,7 +72,7 @@ export default class ViewCityReviews extends React.Component {
                   <div className='reviewRow'>
 
                     <div className="text">
-                      <i className='fas fa-user'></i>{`${rev.firstName} ${rev.lastName}'s Review`}
+                      <i className='fas fa-user'></i>{`${rev.username} (${rev.firstName} ${rev.lastName})`}
                       </div>
                     <div>
                       <i className='fas fa-comment-dots text'></i>
