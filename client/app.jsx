@@ -6,6 +6,7 @@ import { parseRoute } from './lib';
 import CityDescriptionPage from './pages/CityDescriptionPage';
 import ViewCityReviews from './pages/ViewCityReviews';
 import NotFound from './pages/NotFound';
+import SignUpPage from './pages/SignUpPage';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -60,10 +61,10 @@ export default class App extends React.Component {
   }
 
   render() {
-    return <>{this.renderPage()}</>;
+    return <SignUpPage />;
   }
 }
-
+// {this.renderPage()}
 /*
 import {
   BrowserRouter as Router,
