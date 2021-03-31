@@ -24,7 +24,6 @@ export default function SignUpPage() {
       case 'password':
         setUserInfo({ password: event.target.value });
     }
-    console.log(userInfo);
   };
 
   const handleSubmit = () => {
@@ -38,16 +37,27 @@ export default function SignUpPage() {
     })
       .then(res => res.json())
       .then(setUserInfo({ isCompleted: true }));
+    console.log('submitted');
   };
 
+  const togglePassword = () => {
+    const pw = document.getElementById('password');
+    if (pw.type === 'password') {
+      pw.type = 'text';
+    } else {
+      pw.type = 'password';
+    }
+  };
+
+  console.log(userInfo);
   return (
     <div className="container-fluid h-100vh">
       <div className="d-flex col-12 justify-content-center">
         <div className="flex-column">
           <PageTitle value="Sign Up" />
 
-          <div className="signUpForm" style={{ margin: '100px auto' }}>
-            <form>
+          <div className="signUpForm" style={{ margin: '25% auto' }}>
+            <form onSubmit={handleSubmit}>
             <label className="text" htmlFor="firstName">First Name</label><br/>
             <input id='firstName' type="text" onChange={handleChange} required/><br/>
             <label className="text" htmlFor="lastName">Last Name</label><br/>
@@ -56,8 +66,10 @@ export default function SignUpPage() {
             <input id='username' type="text" onChange={handleChange} required/><br/>
             <label className="text" htmlFor="password">Enter a Password</label><br/>
             <input id='password' type="password" onChange={handleChange} required/><br/>
+            <input id='pwToggle' type='checkbox' onClick={togglePassword}/>
+            <label htmlFor="pwToggle">View Password</label><br/>
+            <button className='btn btn-info' type='submit'>Sign Up</button>
           </form>
-          <button className='btn btn-info' type='submit' onSubmit={handleSubmit}>Sign Up</button>
           </div>
         </div>
       </div>
