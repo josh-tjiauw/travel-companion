@@ -8,6 +8,18 @@ export default function SignUpPage() {
     username: null,
     hashedPassword: null
   });
+
+  const handleChange = () => {
+    switch (event.target.id) {
+      case 'firstName':
+        setUserInfo({ firstName: event.target.value });
+        break;
+      case 'lastName':
+        setUserInfo({ lastName: event.target.value });
+    }
+  };
+
+  console.log(userInfo);
   return (
     <div className="container-fluid h-100vh">
       <div className="d-flex col-12 justify-content-center">
@@ -16,7 +28,7 @@ export default function SignUpPage() {
 
           <form>
             <label className="text" htmlFor="firstName">First Name</label><br/>
-            <input type="text"/>
+            <input id='firstName' type="text" onChange={handleChange}/>
           </form>
         </div>
       </div>
