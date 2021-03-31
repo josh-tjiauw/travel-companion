@@ -7,7 +7,8 @@ export default function SignUpPage() {
     lastName: null,
     username: null,
     password: null,
-    isCompleted: false
+    isCompleted: false,
+    info: null
   });
 
   const handleChange = () => {
@@ -36,8 +37,10 @@ export default function SignUpPage() {
       body: JSON.stringify(userInfo)
     })
       .then(res => res.json())
-      .then(setUserInfo({ isCompleted: true }));
-    console.log('submitted');
+      .then(data => {
+        setUserInfo({ info: data, isCompleted: true });
+      });
+    console.log(userInfo);
   };
 
   const togglePassword = () => {
