@@ -54,6 +54,9 @@ export default class App extends React.Component {
       const cityName = route.params.get('cityName');
       return <ViewCityReviews cityName={cityName} placeId={placeId} />;
     }
+    if (route.path === 'signup') {
+      return <SignUpPage />;
+    }
     if (route.path === '#city?NotFound') {
       return <NotFound />;
     }
@@ -61,10 +64,10 @@ export default class App extends React.Component {
   }
 
   render() {
-    return <SignUpPage />;
+    return <>{this.renderPage()}</>;
   }
 }
-// {this.renderPage()}
+
 /*
 import {
   BrowserRouter as Router,

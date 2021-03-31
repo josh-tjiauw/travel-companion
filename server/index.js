@@ -6,6 +6,9 @@ const db = require('./db');
 const errorMiddleware = require('./error-middleware');
 const staticMiddleware = require('./static-middleware');
 const path = require('path');
+const argon2 = require('argon2'); // eslint-disable-line
+const jwt = require('jsonwebtoken'); // eslint-disable-line
+const ClientError = require('./client-error');
 
 const app = express();
 app.use(staticMiddleware);
@@ -139,18 +142,18 @@ app.post('/api/city/:placeId/posts', (req, res, next) => {
     });
 });
 
-app.post('/api/auth/sign-up', (req, res, next) => {
-  const { username, password } = req.body;
-  if (!username || !password) {
+app.post('/api/auth/signup', (req, res, next) => {
+  const { firstName, lastName, username, password } = req.body;
+  if (!firstName || !lastName || !username || !password) {
     throw new ClientError(400, 'username and password are required fields');
   }
   argon2
     .hash(password)
     .then(hashedPassword => {
       const sql = `
-        insert into "users" ("username", "hashedPassword")
-        values ($1, $2)
-        returning "userId", "username", "createdAt"
+        insert into "users" ("firstName", "lastName", "username", "hashedPassword")
+        values ($1, $2, $3, $4)
+        returning "firstName", "lastName", "userName"
       `;
       const params = [username, hashedPassword];
       return db.query(sql, params);
