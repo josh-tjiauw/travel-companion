@@ -1,23 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AppIcon from '../components/appicon';
 import ReviewForm from '../components/ReviewForm';
 import * as ReactBootstrap from 'react-bootstrap';
 
-export default class CityDescriptionPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      img: null,
-      isLoading: true,
-      error: false,
-      errorMessage: null,
-      reviews: []
-    };
-    this.addReview = this.addReview.bind(this);
-  }
+export default function CityDescriptionPage(props) {
+  console.log(props);
+  const [cityDesc, setCityDesc] = React.useState({
+    img: null,
+    isLoading: true,
+    error: false,
+    errorMessage: null,
+    reviews: []
+  });
 
-  addReview(review) {
-    fetch(`/api/city/${this.props.placeId}/posts`, {
+  useEffect(() => {
+    const response = fetch(`/api/getImageData/${props.cityName}`);
+    const data = response.json();
+    if (!data.imageData) {
+      window.location.href = '#city?cityName=NotFound';
+      return null;
+    }
+    const imgLink = data.imageData;
+    setCityDesc({ img: imgLink, isLoading: false });
+  });
+
+  const addReview = review => {
+    fetch(`/api/city/${props.placeId}/posts`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -26,35 +34,23 @@ export default class CityDescriptionPage extends React.Component {
     })
       .then(res => {
         if (!res.ok) {
-          this.setState({ error: true, errorMessage: res.statusText });
+          setCityDesc({ error: true, errorMessage: res.statusText });
           return null;
         }
         res.json();
       })
       .then(data => {
-        this.setState({ reviews: [data, ...this.state.reviews] });
+        setCityDesc({ reviews: [data, ...cityDesc.reviews] });
       });
-  }
+  };
 
-  async componentDidMount() {
-    const response = await fetch(`/api/getImageData/${this.props.cityName}`);
-    const data = await response.json();
-    if (!data.imageData) {
-      window.location.href = '#city?cityName=NotFound';
-      return null;
-    }
-    const imgLink = await data.imageData;
-    this.setState({ img: imgLink, isLoading: false });
-  }
-
-  render() {
-    return (
-      this.state.isLoading === true
-        ? (<div className='col-12 d-flex justify-content-center'>
+  return (
+    cityDesc.isLoading === true
+      ? (<div className='col-12 d-flex justify-content-center'>
               <ReactBootstrap.Spinner animation='border' />
               Loading
             </div>)
-        : (<>
+      : (<>
         <div className='container-fluid'>
           <div style={{ position: 'absolute' }}>
             <AppIcon />
@@ -68,8 +64,8 @@ export default class CityDescriptionPage extends React.Component {
               }}
             >
               <img
-                src={this.state.img}
-                alt={`Photograph of ${this.props.cityName}`}
+                src={cityDesc.img}
+                alt={`Photograph of ${props.cityName}`}
                 style={{ width: '100%', maxWidth: '768px', height: 'auto' }}
               />
             </div>
@@ -84,7 +80,7 @@ export default class CityDescriptionPage extends React.Component {
             }}
           >
             <div className='col-12' style={{ margin: '5%' }}>
-              <h1 className='desc-hdr'>{this.props.cityName}</h1>
+              <h1 className='desc-hdr'>{props.cityName}</h1>
             </div>
 
             <div className='col-12' style={{ marginBottom: '5%' }}>
@@ -98,8 +94,8 @@ export default class CityDescriptionPage extends React.Component {
           >
             <div style={{ display: 'flex', justifyContent: 'center' }}>
               <ReviewForm
-                placeId={this.props.placeId}
-                onSubmit={this.addReview}
+                placeId={props.placeId}
+                onSubmit={addReview}
               />
             </div>
           </div>
@@ -109,12 +105,12 @@ export default class CityDescriptionPage extends React.Component {
             style={{ display: 'flex', justifyContent: 'center' }}
           >
             <div>
-              {this.state.error === true ? (`${this.state.errorMessage}`) : (null)}
+              {cityDesc.error === true ? (`${cityDesc.errorMessage}`) : (null)}
               <button
                 className='cityDesc-btn'
                 onClick={e => {
                   e.preventDefault();
-                  window.location.href = `#cityReviews?cityName=${this.props.cityName}&placeId=${this.props.placeId}`;
+                  window.location.href = `#cityReviews?cityName=${props.cityName}&placeId=${props.placeId}`;
                 }}
               >
                 View All Reviews
@@ -123,6 +119,5 @@ export default class CityDescriptionPage extends React.Component {
           </div>
         </div>
       </>)
-    );
-  }
+  );
 }
