@@ -40,7 +40,6 @@ export default function SignUpPage() {
       .then(data => {
         setUserInfo({ info: data, isCompleted: true });
       });
-    console.log(userInfo);
   };
 
   const togglePassword = () => {
@@ -52,7 +51,6 @@ export default function SignUpPage() {
     }
   };
 
-  console.log(userInfo);
   return (
     <div className="container-fluid h-100vh">
       <div className="d-flex col-12 justify-content-center">

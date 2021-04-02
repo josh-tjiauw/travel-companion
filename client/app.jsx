@@ -16,16 +16,17 @@ export default class App extends React.Component {
       info: null,
       photo: null
     };
-    this.getInfo = this.getInfo.bind(this);
+    this.getCityName = this.getCityName.bind(this);
   }
 
+  signup(user) {}
   componentDidMount() {
     window.addEventListener('hashchange', event => {
       this.setState({ route: parseRoute(window.location.hash) });
     });
   }
 
-  getInfo(data) {
+  getCityName(data) {
     this.setState({ info: data });
   }
 
@@ -35,7 +36,7 @@ export default class App extends React.Component {
       return <Home />;
     }
     if (route.path === 'search') {
-      return <SearchPage getInfo={this.getInfo} />;
+      return <SearchPage getCityName={this.getCityName} />;
     }
     if (route.path === 'tovisit') {
       return <ToVisitPage />;

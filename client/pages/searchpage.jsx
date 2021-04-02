@@ -20,7 +20,7 @@ export default function SearchPage(props) {
 
     setCity({ name: cityName, place_id: placeId });
     setAddress(value);
-    props.getInfo(results);
+    props.getCityName(results);
   };
 
   const searchOptions = {
