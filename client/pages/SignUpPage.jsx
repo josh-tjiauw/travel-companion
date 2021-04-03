@@ -1,15 +1,16 @@
 import React from 'react';
 import PageTitle from '../components/PageTitle';
+import axios from 'axios';
 
 export default function SignUpPage() {
   const [userInfo, setUserInfo] = React.useState({
     firstName: null,
     lastName: null,
     username: null,
-    password: null,
-    isCompleted: false,
-    info: null
+    password: null
   });
+
+  const [loading, setLoading] = React.useState(false);
 
   const handleChange = () => {
     switch (event.target.id) {
@@ -29,16 +30,14 @@ export default function SignUpPage() {
 
   const handleSubmit = () => {
     event.preventDefault();
-    fetch('/api/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(userInfo)
+    axios.post('/api/signup', {
+      body: userInfo
     })
-      .then(res => res.json())
-      .then(data => {
-        setUserInfo({ info: data, isCompleted: true });
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
       });
   };
 

@@ -19,10 +19,10 @@ export default function CityDescriptionPage(props) {
         setCityDesc({ img: res.data.imageData, isLoading: false });
       })
       .catch(err => {
-        console.log(err);
+        console.error(err);
+        window.location.href = '#city?cityName=NotFound';
       });
-
-  });
+  }, []);
 
   const addReview = review => {
     fetch(`/api/city/${props.placeId}/posts`, {
