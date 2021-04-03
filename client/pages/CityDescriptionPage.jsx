@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import AppIcon from '../components/appicon';
 import ReviewForm from '../components/ReviewForm';
 import * as ReactBootstrap from 'react-bootstrap';
+import axios from 'axios';
 
 export default function CityDescriptionPage(props) {
-  console.log(props);
   const [cityDesc, setCityDesc] = React.useState({
     img: null,
     isLoading: true,
@@ -14,14 +14,14 @@ export default function CityDescriptionPage(props) {
   });
 
   useEffect(() => {
-    const response = fetch(`/api/getImageData/${props.cityName}`);
-    const data = response.json();
-    if (!data.imageData) {
-      window.location.href = '#city?cityName=NotFound';
-      return null;
-    }
-    const imgLink = data.imageData;
-    setCityDesc({ img: imgLink, isLoading: false });
+    axios.get(`/api/getImageData/${props.cityName}`)
+      .then(res => {
+        setCityDesc({ img: res.data.imageData, isLoading: false });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
   });
 
   const addReview = review => {
