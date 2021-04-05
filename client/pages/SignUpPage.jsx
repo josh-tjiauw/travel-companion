@@ -30,7 +30,7 @@ export default function SignUpPage() {
     event.preventDefault();
     console.log('userInfo: ', userFirst, userLast, username, userPassword);
     axios.post('/api/auth/signup', {
-      body: [userFirst, userLast, username, userPassword]
+      userFirst, userLast, username, userPassword
     })
       .then(res => {
         setLoading(false);
