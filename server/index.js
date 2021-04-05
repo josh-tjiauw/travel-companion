@@ -144,7 +144,6 @@ app.post('/api/city/:placeId/posts', (req, res, next) => {
 
 app.post('/api/auth/signup', (req, res, next) => {
   const { userFirst, userLast, username, userPassword } = req.body;
-  console.log(userFirst);
   if (!userFirst || !userLast || !username || !userPassword) {
     throw new ClientError(400, 'username and password are required fields');
   }
@@ -163,7 +162,9 @@ app.post('/api/auth/signup', (req, res, next) => {
       const [user] = result.rows;
       res.status(201).json(user);
     })
-    .catch(err => next(err));
+    .catch(err => {
+      res.json(`Username ${username} is already taken.`);
+    });
 });
 
 app.post('/api/auth/sign-in', (req, res, next) => {

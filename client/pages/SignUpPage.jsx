@@ -7,8 +7,8 @@ export default function SignUpPage() {
   const [userLast, setUserLast] = React.useState(null);
   const [username, setUsername] = React.useState(null);
   const [userPassword, setUserPassword] = React.useState(null);
-
-  const [loading, setLoading] = React.useState(true);
+  const [errorMessage, setErrorMessage] = React.useState(null);
+  const [loading, setLoading] = React.useState(false);
 
   const handleChange = () => {
     switch (event.target.id) {
@@ -28,13 +28,18 @@ export default function SignUpPage() {
 
   const handleSubmit = () => {
     event.preventDefault();
-    console.log('userInfo: ', userFirst, userLast, username, userPassword);
+    setLoading(true);
     axios.post('/api/auth/signup', {
       userFirst, userLast, username, userPassword
     })
       .then(res => {
-        setLoading(false);
-        console.log('res: ', res);
+        if (res.status === 200) {
+          setErrorMessage(res.data);
+          setLoading(false);
+        } else {
+          setErrorMessage(null);
+          setLoading(false);
+        }
       })
       .catch(err => {
         console.error(err);
@@ -64,11 +69,13 @@ export default function SignUpPage() {
             <input id='lastName' type="text" onChange={handleChange} required/><br/>
             <label className="text" htmlFor="firstName">Enter a Username</label><br/>
             <input id='username' type="text" onChange={handleChange} required/><br/>
+            {errorMessage ? <h6 style={{ color: 'white' }}>{errorMessage}</h6> : null}
             <label className="text" htmlFor="password">Enter a Password</label><br/>
             <input id='password' type="password" onChange={handleChange} required/><br/>
             <input id='pwToggle' type='checkbox' onClick={togglePassword}/>
-            <label htmlFor="pwToggle">View Password</label><br/>
-            <button className='btn btn-info' type='submit'>Sign Up</button>
+            <label htmlFor="pwToggle" style={{ color: 'white' }}>View Password</label><br/>
+            {loading ? <button className='btn btn-info' type='submit'>Signing up...</button> : <button className='btn btn-info' type='submit'>Sign Up</button>}
+            <h6 style={{ color: 'white' }}>Already signed up? <a href='#sign-in'>Sign in!</a></h6>
           </form>
           </div>
         </div>
