@@ -3,36 +3,34 @@ import PageTitle from '../components/PageTitle';
 import axios from 'axios';
 
 export default function SignUpPage() {
-  const [userInfo, setUserInfo] = React.useState({
-    firstName: null,
-    lastName: null,
-    username: null,
-    password: null
-  });
+  const [userFirst, setUserFirst] = React.useState(null);
+  const [userLast, setUserLast] = React.useState(null);
+  const [username, setUsername] = React.useState(null);
+  const [userPassword, setUserPassword] = React.useState(null);
 
   const [loading, setLoading] = React.useState(true);
 
   const handleChange = () => {
     switch (event.target.id) {
       case 'firstName':
-        setUserInfo({ firstName: event.target.value });
+        setUserFirst(event.target.value);
         break;
       case 'lastName':
-        setUserInfo({ lastName: event.target.value });
+        setUserLast(event.target.value);
         break;
       case 'username':
-        setUserInfo({ username: event.target.value });
+        setUsername(event.target.value);
         break;
       case 'password':
-        setUserInfo({ password: event.target.value });
+        setUserPassword(event.target.value);
     }
   };
 
   const handleSubmit = () => {
     event.preventDefault();
-    console.log('userInfo: ', userInfo.firstName, userInfo.lastName, userInfo.username, userInfo.password);
-    axios.post('/api/signup', {
-      body: userInfo
+    console.log('userInfo: ', userFirst, userLast, username, userPassword);
+    axios.post('/api/auth/signup', {
+      body: [userFirst, userLast, username, userPassword]
     })
       .then(res => {
         setLoading(false);

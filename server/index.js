@@ -143,19 +143,19 @@ app.post('/api/city/:placeId/posts', (req, res, next) => {
 });
 
 app.post('/api/auth/signup', (req, res, next) => {
-  const { firstName, lastName, username, password } = req.body;
-  if (!firstName || !lastName || !username || !password) {
+  const { userFirst, userLast, username, userPassword } = req.body;
+  if (!userFirst || !userLast || !username || !userPassword) {
     throw new ClientError(400, 'username and password are required fields');
   }
   argon2
-    .hash(password)
+    .hash(userPassword)
     .then(hashedPassword => {
       const sql = `
         insert into "users" ("username", "hashedPassword", "firstName", "lastName")
         values ($1, $2, $3, $4)
         returning "firstName", "lastName", "username"
       `;
-      const params = [firstName, lastName, username, hashedPassword];
+      const params = [userFirst, userLast, username, hashedPassword];
       return db.query(sql, params);
     })
     .then(result => {
