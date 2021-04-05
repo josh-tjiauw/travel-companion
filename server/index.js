@@ -156,7 +156,7 @@ app.post('/api/auth/signup', (req, res, next) => {
         values ($1, $2, $3, $4)
         returning "firstName", "lastName", "username"
       `;
-      const params = [userFirst, userLast, username, hashedPassword];
+      const params = [username, hashedPassword, userFirst, userLast];
       return db.query(sql, params);
     })
     .then(result => {
