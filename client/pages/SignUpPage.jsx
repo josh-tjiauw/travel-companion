@@ -10,7 +10,7 @@ export default function SignUpPage() {
     password: null
   });
 
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
 
   const handleChange = () => {
     switch (event.target.id) {
@@ -30,14 +30,16 @@ export default function SignUpPage() {
 
   const handleSubmit = () => {
     event.preventDefault();
+    console.log('userInfo: ', userInfo.firstName, userInfo.lastName, userInfo.username, userInfo.password);
     axios.post('/api/signup', {
       body: userInfo
     })
       .then(res => {
-        console.log(res);
+        setLoading(false);
+        console.log('res: ', res);
       })
       .catch(err => {
-        console.log(err);
+        console.error(err);
       });
   };
 

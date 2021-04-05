@@ -151,11 +151,11 @@ app.post('/api/auth/signup', (req, res, next) => {
     .hash(password)
     .then(hashedPassword => {
       const sql = `
-        insert into "users" ("firstName", "lastName", "username", "hashedPassword")
+        insert into "users" ("username", "hashedPassword", "firstName", "lastName")
         values ($1, $2, $3, $4)
-        returning "firstName", "lastName", "userName"
+        returning "firstName", "lastName", "username"
       `;
-      const params = [username, hashedPassword];
+      const params = [firstName, lastName, username, hashedPassword];
       return db.query(sql, params);
     })
     .then(result => {
