@@ -168,8 +168,9 @@ app.post('/api/auth/signup', (req, res, next) => {
 });
 
 app.post('/api/auth/sign-in', (req, res, next) => {
-  const { username, password } = req.body;
-  if (!username || !password) {
+  const { username, userPassword } = req.body;
+  console.log(req.body);
+  if (!username || !userPassword) {
     throw new ClientError(401, 'invalid login');
   }
 
@@ -187,7 +188,7 @@ app.post('/api/auth/sign-in', (req, res, next) => {
       }
       const { userId, hashedPassword } = user;
       return argon2
-        .verify(hashedPassword, password)
+        .verify(hashedPassword, userPassword)
         .then(isMatching => {
           if (!isMatching) {
             throw new ClientError(401, 'Invalid login error.');
