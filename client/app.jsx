@@ -7,6 +7,7 @@ import CityDescriptionPage from './pages/CityDescriptionPage';
 import ViewCityReviews from './pages/ViewCityReviews';
 import NotFound from './pages/NotFound';
 import SignUpPage from './pages/SignUpPage';
+import SignInPage from './pages/SignInPage';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -57,6 +58,9 @@ export default class App extends React.Component {
     }
     if (route.path === 'signup') {
       return <SignUpPage />;
+    }
+    if (route.path === 'sign-in') {
+      return <SignInPage />;
     }
     if (route.path === '#city?NotFound') {
       return <NotFound />;
