@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PageTitle from '../components/PageTitle';
 import axios from 'axios';
 
-export default function SignInPage() {
+export default function SignInPage(props) {
   const [username, setUsername] = React.useState(null);
   const [userPassword, setUserPassword] = React.useState(null);
   const [errorMessage, setErrorMessage] = React.useState(null);
@@ -25,7 +25,9 @@ export default function SignInPage() {
       username, userPassword
     })
       .then(res => {
-        console.log(res.data);
+        setLoading(false);
+        props.getUser(res.data.user);
+        window.location.href = '#';
       })
       .catch(err => {
         console.error(err);
@@ -45,7 +47,7 @@ export default function SignInPage() {
     <div className='container-fluid'>
       <PageTitle value='Sign in' />
 
-      <div className='col-12 d-flex justify-content-center' style={{ margin: '10% auto' }}>
+      <div className='col-12 d-flex justify-content-center' style={{ margin: '10% auto', color: 'white' }}>
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="username">Username</label><br/>
@@ -63,7 +65,10 @@ export default function SignInPage() {
           </div>
 
           <div>
-            <button className='btn btn-primary'>Submit</button><br/>
+            {loading ? <button className='btn btn-primary'>Logging in...</button> : <button className='btn btn-primary'>Submit</button>}
+          </div>
+
+          <div>
             <a href='/#signup'>Are you new here? Sign Up!</a>
           </div>
         </form>

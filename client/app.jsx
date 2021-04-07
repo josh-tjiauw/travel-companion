@@ -15,12 +15,14 @@ export default class App extends React.Component {
     this.state = {
       route: parseRoute(window.location.hash),
       info: null,
-      photo: null
+      photo: null,
+      isLoggedIn: false,
+      username: null
     };
     this.getCityName = this.getCityName.bind(this);
+    this.getUser = this.getUser.bind(this);
   }
 
-  signup(user) {}
   componentDidMount() {
     window.addEventListener('hashchange', event => {
       this.setState({ route: parseRoute(window.location.hash) });
@@ -31,7 +33,13 @@ export default class App extends React.Component {
     this.setState({ info: data });
   }
 
+  getUser(user) {
+    this.setState({ isLoggedIn: true, username: user });
+
+  }
+
   renderPage() {
+    console.log(this.state.username);
     const { route } = this.state;
     if (route.path === '') {
       return <Home />;
@@ -60,7 +68,7 @@ export default class App extends React.Component {
       return <SignUpPage />;
     }
     if (route.path === 'sign-in') {
-      return <SignInPage />;
+      return <SignInPage getUser={this.getUser} />;
     }
     if (route.path === '#city?NotFound') {
       return <NotFound />;
