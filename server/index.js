@@ -9,6 +9,7 @@ const path = require('path');
 const argon2 = require('argon2'); // eslint-disable-line
 const jwt = require('jsonwebtoken'); // eslint-disable-line
 const ClientError = require('./client-error');
+const jwtGenerator = require('./jwtGenerator');
 
 const app = express();
 app.use(staticMiddleware);
