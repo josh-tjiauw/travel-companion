@@ -14,6 +14,7 @@ export default function CityDescriptionPage(props) {
   });
 
   useEffect(() => {
+    console.log(props);
     axios.get(`/api/getImageData/${props.cityName}`)
       .then(res => {
         setCityDesc({ img: res.data.imageData, isLoading: false });

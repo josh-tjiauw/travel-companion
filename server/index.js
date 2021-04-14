@@ -118,7 +118,7 @@ app.get('/api/city/:placeId/posts', (req, res, next) => {
 });
 
 app.post('/api/city/:placeId/posts', (req, res, next) => {
-  const params = [req.body.body, req.body.recRestaurants, req.body.recActivities, req.body.placeId];
+  const params = [req.body.body, req.body.recRestaurants, req.body.recActivities, req.body.placeId, req.body.userId];
   if (params[0] === '') {
     res.json('Cannot leave this field blank.');
     res.status(400);
@@ -126,7 +126,7 @@ app.post('/api/city/:placeId/posts', (req, res, next) => {
   }
   const sql = `
   insert into "posts" ("body", "recRestaurants", "recActivities", "placeId", "createdBy")
-  values ($1, $2, $3, $4, 1)
+  values ($1, $2, $3, $4, $5)
   returning *
   `;
 
@@ -146,7 +146,7 @@ app.post('/api/city/:placeId/posts', (req, res, next) => {
 app.post('/api/auth/signup', (req, res, next) => {
   const { userFirst, userLast, username, userPassword } = req.body;
   if (!userFirst || !userLast || !username || !userPassword) {
-    throw new ClientError(400, 'username and password are required fields');
+    throw new ClientError(400, 'Please fill in all required fields.');
   }
   argon2
     .hash(userPassword)

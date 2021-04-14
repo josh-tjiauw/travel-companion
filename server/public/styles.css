@@ -6,6 +6,14 @@ body {
   margin: 0;
 }
 
+.home {
+  background-image: url('./citybg.gif');
+  background-size: cover;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
 .not-found {
   display: flex;
   flex-wrap: wrap;

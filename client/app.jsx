@@ -8,6 +8,7 @@ import ViewCityReviews from './pages/ViewCityReviews';
 import NotFound from './pages/NotFound';
 import SignUpPage from './pages/SignUpPage';
 import SignInPage from './pages/SignInPage';
+import axios from 'axios';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -34,12 +35,10 @@ export default class App extends React.Component {
   }
 
   getUser(user) {
-    this.setState({ isLoggedIn: true, username: user });
-
+    this.setState({ isLoggedIn: true, username: 'Guest' });
   }
 
   renderPage() {
-    console.log(this.state.username);
     const { route } = this.state;
     if (route.path === '') {
       return <Home />;
