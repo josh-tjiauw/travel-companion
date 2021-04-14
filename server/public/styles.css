@@ -14,6 +14,14 @@ body {
   margin: 0;
 }
 
+.search {
+  background-image: url('./search-bg.jpg');
+  background-size: cover;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
 .not-found {
   display: flex;
   flex-wrap: wrap;

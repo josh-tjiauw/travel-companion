@@ -28,7 +28,7 @@ export default function SearchPage(props) {
   };
 
   return (
-    <div className='container-fluid'>
+    <div className='container-fluid search'>
       <AppIcon />
       <PlacesAutocomplete
         value={address}
