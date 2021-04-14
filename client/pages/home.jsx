@@ -18,6 +18,7 @@ export default function Home(props) {
           Search a City
         </button>
       </div>
+
       <div>
         <button
           className='nav-btn'
@@ -28,6 +29,23 @@ export default function Home(props) {
         >
           Visit Wishlist
         </button>
+      </div>
+
+      <div>
+        <button className="nav-btn"
+        onClick={e => {
+          e.preventDefault();
+          window.location.href = '#sign-in';
+        }}>
+          Sign In
+        </button>
+      </div>
+
+      <div className="nav-btn" onClick={e => {
+        e.preventDefault();
+        window.location.href = '#signup';
+      }}>
+        Register
       </div>
     </div>
   );
