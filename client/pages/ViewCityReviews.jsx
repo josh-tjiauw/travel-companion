@@ -17,7 +17,9 @@ export default class ViewCityReviews extends React.Component {
     this.setState({ isLoading: true });
     fetch(`/api/city/${this.props.placeId}/posts`)
       .then(res => res.json())
-      .then(data => this.setState({ reviews: data, isLoading: false }));
+      .then(data => {
+        this.setState({ reviews: data, isLoading: false });
+      });
   }
 
   componentDidMount() {

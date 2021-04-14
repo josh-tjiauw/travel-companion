@@ -2,11 +2,12 @@ import React from 'react';
 
 export default function Home(props) {
   return (
-    <div className='container-fluid'>
+    <div className='container-fluid home'>
       <div className='btn-container'>
         <h1 className='hdr-text'>Travel Companion</h1>
       </div>
-      <div className='btn-container'>
+
+      <div className='btn-container d-inline'>
         <button
           className='nav-btn'
           onClick={e => {

@@ -14,6 +14,7 @@ export default class ReviewForm extends React.Component {
   }
 
   handleChange(e) {
+    console.log(this.props);
     if (e.target.id === 'body') {
       this.setState({ body: e.target.value });
     } else if (e.target.id === 'recRestaurants') {
@@ -29,7 +30,8 @@ export default class ReviewForm extends React.Component {
       body: this.state.body,
       recRestaurants: this.state.recRestaurants,
       recActivities: this.state.recActivities,
-      placeId: this.props.placeId
+      placeId: this.props.placeId,
+      userId: this.props.userId
     };
     this.props.onSubmit(newReview);
     this.setState({ body: '', recRestaurants: '', recActivities: '', submitted: true });

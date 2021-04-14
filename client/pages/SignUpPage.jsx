@@ -61,7 +61,7 @@ export default function SignUpPage() {
         <div className="flex-column">
           <PageTitle value="Sign Up" />
 
-          <div className="signUpForm" style={{ margin: '25% auto' }}>
+          <div className='col-12 d-flex justify-content-center' style={{ margin: '25% auto' }}>
             <form onSubmit={handleSubmit}>
             <label className="text" htmlFor="firstName">First Name</label><br/>
             <input id='firstName' type="text" onChange={handleChange} required/><br/>

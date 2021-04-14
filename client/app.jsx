@@ -7,6 +7,8 @@ import CityDescriptionPage from './pages/CityDescriptionPage';
 import ViewCityReviews from './pages/ViewCityReviews';
 import NotFound from './pages/NotFound';
 import SignUpPage from './pages/SignUpPage';
+import SignInPage from './pages/SignInPage';
+import axios from 'axios';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -14,12 +16,14 @@ export default class App extends React.Component {
     this.state = {
       route: parseRoute(window.location.hash),
       info: null,
-      photo: null
+      photo: null,
+      isLoggedIn: false,
+      username: null
     };
     this.getCityName = this.getCityName.bind(this);
+    this.getUser = this.getUser.bind(this);
   }
 
-  signup(user) {}
   componentDidMount() {
     window.addEventListener('hashchange', event => {
       this.setState({ route: parseRoute(window.location.hash) });
@@ -28,6 +32,10 @@ export default class App extends React.Component {
 
   getCityName(data) {
     this.setState({ info: data });
+  }
+
+  getUser(user) {
+    this.setState({ isLoggedIn: true, username: 'Guest' });
   }
 
   renderPage() {
@@ -57,6 +65,9 @@ export default class App extends React.Component {
     }
     if (route.path === 'signup') {
       return <SignUpPage />;
+    }
+    if (route.path === 'sign-in') {
+      return <SignInPage getUser={this.getUser} />;
     }
     if (route.path === '#city?NotFound') {
       return <NotFound />;

@@ -9,6 +9,7 @@ const path = require('path');
 const argon2 = require('argon2'); // eslint-disable-line
 const jwt = require('jsonwebtoken'); // eslint-disable-line
 const ClientError = require('./client-error');
+const jwtGenerator = require('./jwtGenerator');
 
 const app = express();
 app.use(staticMiddleware);
@@ -117,7 +118,7 @@ app.get('/api/city/:placeId/posts', (req, res, next) => {
 });
 
 app.post('/api/city/:placeId/posts', (req, res, next) => {
-  const params = [req.body.body, req.body.recRestaurants, req.body.recActivities, req.body.placeId];
+  const params = [req.body.body, req.body.recRestaurants, req.body.recActivities, req.body.placeId, req.body.userId];
   if (params[0] === '') {
     res.json('Cannot leave this field blank.');
     res.status(400);
@@ -125,7 +126,7 @@ app.post('/api/city/:placeId/posts', (req, res, next) => {
   }
   const sql = `
   insert into "posts" ("body", "recRestaurants", "recActivities", "placeId", "createdBy")
-  values ($1, $2, $3, $4, 1)
+  values ($1, $2, $3, $4, $5)
   returning *
   `;
 
@@ -145,7 +146,7 @@ app.post('/api/city/:placeId/posts', (req, res, next) => {
 app.post('/api/auth/signup', (req, res, next) => {
   const { userFirst, userLast, username, userPassword } = req.body;
   if (!userFirst || !userLast || !username || !userPassword) {
-    throw new ClientError(400, 'username and password are required fields');
+    throw new ClientError(400, 'Please fill in all required fields.');
   }
   argon2
     .hash(userPassword)
@@ -168,8 +169,9 @@ app.post('/api/auth/signup', (req, res, next) => {
 });
 
 app.post('/api/auth/sign-in', (req, res, next) => {
-  const { username, password } = req.body;
-  if (!username || !password) {
+  const { username, userPassword } = req.body;
+  console.log(req.body);
+  if (!username || !userPassword) {
     throw new ClientError(401, 'invalid login');
   }
 
@@ -187,7 +189,7 @@ app.post('/api/auth/sign-in', (req, res, next) => {
       }
       const { userId, hashedPassword } = user;
       return argon2
-        .verify(hashedPassword, password)
+        .verify(hashedPassword, userPassword)
         .then(isMatching => {
           if (!isMatching) {
             throw new ClientError(401, 'Invalid login error.');
