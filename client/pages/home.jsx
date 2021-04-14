@@ -6,7 +6,8 @@ export default function Home(props) {
       <div className='btn-container'>
         <h1 className='hdr-text'>Travel Companion</h1>
       </div>
-      <div className='btn-container'>
+
+      <div className='btn-container d-inline'>
         <button
           className='nav-btn'
           onClick={e => {
