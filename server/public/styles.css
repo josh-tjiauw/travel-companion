@@ -1,3 +1,4 @@
+/* Utility */
 * {
   box-sizing: border-box;
 }
@@ -6,30 +7,6 @@ body {
   margin: 0;
 }
 
-.home {
-  background-image: url('./citybg.jpg');
-  background-size: cover;
-  height: 100vh;
-  padding: 0;
-  margin: 0;
-}
-
-.search {
-  background-image: url('./search-bg.jpg');
-  background-size: cover;
-  height: 100vh;
-  padding: 0;
-  margin: 0;
-}
-
-.not-found {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  position: relative;
-  top: 40%;
-  transform: translateY(-50%);
-}
 .container-fluid {
   background-color: #202324;
   flex-wrap: wrap;
@@ -39,6 +16,32 @@ body {
   overflow: auto;
 }
 
+.nav-btn {
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  margin: 10px auto;
+  width: 250px;
+  height: 50px;
+  font-size: 18px;
+  font-family: 'Potta One', cursive;
+  align-items: center;
+  justify-content: center;
+  border: solid black;
+  border-radius: 5px;
+  border-color: #00ff6c;
+  background: none;
+}
+
+.fas {
+  margin: auto 3px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Text Styles */
 .hdr-text {
   display: flex;
   justify-content: center;
@@ -60,23 +63,64 @@ body {
   color: white;
 }
 
-.nav-btn {
-  display: flex;
-  justify-content: center;
-  color: #fff;
-  margin: 10px auto;
-  width: 250px;
-  height: 50px;
-  font-size: 18px;
+.form-text {
+  color: white;
   font-family: 'Potta One', cursive;
-  align-items: center;
-  justify-content: center;
-  border: solid black;
-  border-radius: 5px;
-  border-color: #00ff6c;
-  background: none;
 }
 
+/* Home Page Layout */
+.home {
+  background-image: url('./citybg.jpg');
+  background-size: cover;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.home-title {
+    margin-bottom: 12.5%;
+  }
+
+.home-btn button {
+  margin: 30px auto;
+}
+
+/*To Visit Page Layout*/
+.visitInputContainer {
+  margin-top: 20%;
+}
+
+.toVisitSubmit {
+  float: right;
+}
+
+.toVisitsDivContainer {
+  display: flex;
+  position: relative;
+  border: solid gray;
+  color: white;
+  padding: 5px;
+}
+
+/* Search Page Layout */
+.search {
+  background-image: url('./search-bg.jpg');
+  background-size: cover;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.not-found {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  top: 40%;
+  transform: translateY(-50%);
+}
+
+/* City Description Page Layout */
 .cityDescInput {
   width: 300px;
   margin-bottom: 50px;
@@ -105,10 +149,8 @@ textarea {
   background-color: lightgreen;
   border-color: lightgreen;
 }
-.hidden {
-  display: none;
-}
 
+/* City Reviews Page Layout */
 .reviewContainer {
   color: white;
   border: solid white;
@@ -120,31 +162,7 @@ textarea {
   margin: 15px auto;
 }
 
-.fas {
-  margin: auto 3px;
-}
-
-.visitInputContainer {
-  margin-top: 20%;
-}
-
-.toVisitSubmit {
-  float: right;
-}
-
-.toVisitsDivContainer {
-  display: flex;
-  position: relative;
-  border: solid gray;
-  color: white;
-  padding: 5px;
-}
-
-.form-text {
-  color: white;
-  font-family: 'Potta One', cursive;
-}
-
+/* Media Queries */
 @media screen and (min-width: 1025px) {
   .suggestion_div {
     width: 600px;
@@ -186,10 +204,6 @@ textarea {
   .reviewText {
   font-size: 30px;
 }
-
-  .btn-container {
-    margin-bottom: 15%;
-  }
 
   .reviewContainer {
     width: 900px;
